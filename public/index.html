@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <title>SoluWeb</title>
+
+    <title>SoluWeb: Crea la App o Sitio Web de Tus Sueños | Soluciones Personalizadas y Económicas</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="HTML5 website template" />
-    <meta name="keywords" content="global, template, html, sass, jquery" />
-    <meta name="author" content="Bucky Maler" />
-
+    <meta name="description" content="Obtén una aplicación o sitio web personalizado e impresionante creado por nosotros. Damos vida a tus ideas con soluciones asequibles y personalizadas." />
+    <meta name="keywords" content="desarrollo personalizado, apps móviles, sitios web, diseño web, empresa desarrollo, SEO, SEM, Marketing digital, marketing, landing page, e-comerce, tienda online" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="icon" href="assets/img/faviconSoluweb.png" type="image/png">
   </head>
   <body>
     <!-- notification for small viewports and landscape oriented smartphones -->
@@ -286,7 +285,7 @@
                 <div class="hire">
                   <h2>¿Qué servicio quieres contratar?</h2>
                   <!-- checkout formspree.io for easy form setup -->
-                  <form
+                 <form
                     class="work-request"
                     onsubmit="enviarMensajeWhatsapp(event)"
                   >
@@ -471,7 +470,7 @@
                       </div>
                     </div>
                     <input type="submit" value="Cotizar Servicio" />
-                  </form>
+                  </form> 
                 </div>
               </li>
             </ul>
@@ -498,24 +497,20 @@
     <script>
       function enviarMensajeWhatsapp(event) {
         event.preventDefault(); // Evitar que el formulario se envíe de manera tradicional
-
+    
         // Obtener los valores del formulario
         var nombre = document.getElementById('name').value;
         var email = document.getElementById('email').value;
-
+    
         // Obtener las opciones seleccionadas
         var opcionesSeleccionadas = [];
-        var checkboxes = document.querySelectorAll(
-          'input[type="checkbox"]:checked'
-        );
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
         checkboxes.forEach(function (checkbox) {
-          opcionesSeleccionadas.push(
-            checkbox.nextElementSibling.textContent.trim()
-          );
+          opcionesSeleccionadas.push(checkbox.nextElementSibling.textContent.trim());
         });
-
+    
         // Construir el mensaje de WhatsApp con enfoque comercial y emojis
-        var mensajeWhatsApp = ' Hola, me interesan los siguientes servicios:\n';
+        var mensajeWhatsApp = 'Hola, me interesan los siguientes servicios:\n';
         opcionesSeleccionadas.forEach(function (opcion) {
           mensajeWhatsApp += '- *' + opcion + '*\n'; // Texto en negrita
         });
@@ -525,18 +520,40 @@
           ' y mi correo electrónico es: ' +
           email +
           '. Por favor, contáctame para discutir más detalles.';
-
+    
         // Codificar el mensaje para que sea una URL válida para WhatsApp
         var mensajeWhatsAppCodificado = encodeURIComponent(mensajeWhatsApp);
-
+    
         // Abrir WhatsApp con el mensaje generado
-        window.open(
-          'https://api.whatsapp.com/send?phone=+543855861884&text=' +
-            mensajeWhatsAppCodificado
-        );
-
-        // Agregar código para Google Sheets
+        // window.open(
+        //   'https://api.whatsapp.com/send?phone=+543855861884&text=' +
+        //     mensajeWhatsAppCodificado
+        // );
+    
+        // Agregar los datos al Google Sheets
+        agregarDatosGoogleSheets(nombre, email, opcionesSeleccionadas);
+      }
+    
+      function agregarDatosGoogleSheets(nombre, email, opcionesSeleccionadas) {
+        var formData = {
+          'Nombre': nombre,
+          'Email': email,
+          'Servicios': opcionesSeleccionadas.join(', ')
+        };
+    
+        // Enviar los datos al servidor de Google Apps Script
+        fetch('https://script.google.com/macros/s/AKfycbwd_RfgC1JNEllYbjO8IrgyyB1qepgc7tkM6QCwzrll1HdN9w1MrhKBerzr9_xMiMDa/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(response => console.log('Datos enviados al Google Sheets'))
+        .catch(error => console.error('Error al enviar datos al Google Sheets:', error));
       }
     </script>
+    
   </body>
 </html>
