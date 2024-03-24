@@ -1,0 +1,20 @@
+
+
+.d-none {
+    display: none;
+}
+
+.d-flex {
+    display: flex;
+}
+
+
+.intro--options a {
+    color: rgba(163, 163, 161, 0.8)!important;
+
+}
+
+.intro--options a:hover {
+    color: rgba(255, 255, 254, 0.8)!important;
+
+}
