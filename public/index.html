@@ -14,7 +14,7 @@
   </head>
   <body>
     <!-- notification for small viewports and landscape oriented smartphones -->
-    <div class="device-notification">
+    <!-- <div class="device-notification">
       <a class="device-notification--logo" href="#0">
         <img src="assets/img/soluweblogo.png" width="123px" alt="Global" />
       </a>
@@ -23,7 +23,7 @@
         dispositivo en posición vertical o encuentres una pantalla más grande.
         No te decepcionará.
       </p>
-    </div>
+    </div> -->
 
     <div class="perspective effect-rotate-left">
       <div class="container">
@@ -292,7 +292,11 @@
                   >
                     <div class="work-request--options">
                       <span class="options-a">
-                        <input id="opt-1" type="checkbox" value="    Diseño de Apps" />
+                        <input
+                          id="opt-1"
+                          type="checkbox"
+                          value="    Diseño de Apps"
+                        />
                         <label for="opt-1">
                           <svg
                             version="1.1"
@@ -342,11 +346,7 @@
                           </svg>
                           Diseño Gráfico
                         </label>
-                        <input
-                          id="opt-3"
-                          type="checkbox"
-                          value=" Diseño UI"
-                        />
+                        <input id="opt-3" type="checkbox" value=" Diseño UI" />
                         <label for="opt-3">
                           <svg
                             version="1.1"
@@ -394,7 +394,11 @@
                           </svg>
                           Diseño UX
                         </label>
-                        <input id="opt-5" type="checkbox" value="  Diseño Web" />
+                        <input
+                          id="opt-5"
+                          type="checkbox"
+                          value="  Diseño Web"
+                        />
                         <label for="opt-5">
                           <svg
                             version="1.1"
@@ -417,7 +421,11 @@
                           </svg>
                           Diseño Web
                         </label>
-                        <input id="opt-6" type="checkbox" value="Marketing Digital" />
+                        <input
+                          id="opt-6"
+                          type="checkbox"
+                          value="Marketing Digital"
+                        />
                         <label for="opt-6">
                           <svg
                             version="1.1"
@@ -489,33 +497,46 @@
     <script src="assets/js/functions-min.js"></script>
     <script>
       function enviarMensajeWhatsapp(event) {
-          event.preventDefault(); // Evitar que el formulario se envíe de manera tradicional
-      
-          // Obtener los valores del formulario
-          var nombre = document.getElementById('name').value;
-          var email = document.getElementById('email').value;
-      
-          // Obtener las opciones seleccionadas
-          var opcionesSeleccionadas = [];
-          var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-          checkboxes.forEach(function(checkbox) {
-              opcionesSeleccionadas.push(checkbox.nextElementSibling.textContent.trim());
-          });
-      
-          // Construir el mensaje de WhatsApp con enfoque comercial y emojis
-          var mensajeWhatsApp = '📲 Hola, me interesan los siguientes servicios:\n';
-          opcionesSeleccionadas.forEach(function(opcion) {
-              mensajeWhatsApp += '- *' + opcion + '*\n'; // Texto en negrita
-          });
-          mensajeWhatsApp += 'Mi nombre es ' + nombre + ' y mi correo electrónico es: ' + email + '. Por favor, contáctame para discutir más detalles.';
-      
-          // Codificar el mensaje para que sea una URL válida para WhatsApp
-          var mensajeWhatsAppCodificado = encodeURIComponent(mensajeWhatsApp);
-      
-          // Abrir WhatsApp con el mensaje generado
-          window.open('https://api.whatsapp.com/send?phone=+543855861884&text=' + mensajeWhatsAppCodificado);
+        event.preventDefault(); // Evitar que el formulario se envíe de manera tradicional
+
+        // Obtener los valores del formulario
+        var nombre = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+
+        // Obtener las opciones seleccionadas
+        var opcionesSeleccionadas = [];
+        var checkboxes = document.querySelectorAll(
+          'input[type="checkbox"]:checked'
+        );
+        checkboxes.forEach(function (checkbox) {
+          opcionesSeleccionadas.push(
+            checkbox.nextElementSibling.textContent.trim()
+          );
+        });
+
+        // Construir el mensaje de WhatsApp con enfoque comercial y emojis
+        var mensajeWhatsApp = ' Hola, me interesan los siguientes servicios:\n';
+        opcionesSeleccionadas.forEach(function (opcion) {
+          mensajeWhatsApp += '- *' + opcion + '*\n'; // Texto en negrita
+        });
+        mensajeWhatsApp +=
+          'Mi nombre es ' +
+          nombre +
+          ' y mi correo electrónico es: ' +
+          email +
+          '. Por favor, contáctame para discutir más detalles.';
+
+        // Codificar el mensaje para que sea una URL válida para WhatsApp
+        var mensajeWhatsAppCodificado = encodeURIComponent(mensajeWhatsApp);
+
+        // Abrir WhatsApp con el mensaje generado
+        window.open(
+          'https://api.whatsapp.com/send?phone=+543855861884&text=' +
+            mensajeWhatsAppCodificado
+        );
+
+        // Agregar código para Google Sheets
       }
-      </script>
-      
+    </script>
   </body>
 </html>
