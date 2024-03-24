@@ -1,89 +1,531 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>SoluWeb</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="HTML5 website template" />
+    <meta name="keywords" content="global, template, html, sass, jquery" />
+    <meta name="author" content="Bucky Maler" />
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/10.9.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/10.9.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/10.9.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/10.9.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/10.9.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/10.9.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/10.9.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/10.9.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/10.9.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/10.9.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    <!-- notification for small viewports and landscape oriented smartphones -->
+    <div class="device-notification">
+      <a class="device-notification--logo" href="#0">
+        <img src="assets/img/soluweblogo.png" width="123px" alt="Global" />
+      </a>
+      <p class="device-notification--message">
+        Soluweb tiene tanto para ofrecer que te pedimos que orientes tu
+        dispositivo en posición vertical o encuentres una pantalla más grande.
+        No te decepcionará.
+      </p>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
+    <div class="perspective effect-rotate-left">
+      <div class="container">
+        <div class="outer-nav--return"></div>
+        <div id="viewport" class="l-viewport">
+          <div class="l-wrapper">
+            <header class="header">
+              <a class="header--logo" href="#0">
+                <img
+                  src="assets/img/soluweblogo.png"
+                  width="123px"
+                  alt="Global"
+                />
+                <!-- <p>SoluWeb</p> -->
+              </a>
+              <button class="header--cta cta">Contáctanos</button>
+              <div class="header--nav-toggle">
+                <span></span>
+              </div>
+            </header>
+            <nav class="l-side-nav">
+              <ul class="side-nav">
+                <li class="is-active"><span>Inicio</span></li>
+                <li><span>Servicios</span></li>
+                <li><span>Nosotros</span></li>
+                <li><span>Contact</span></li>
+                <li><span>Contáctanos</span></li>
+              </ul>
+            </nav>
+            <ul class="l-main-content main-content">
+              <!-- Hero Section -->
+              <li class="l-section section section--is-active">
+                <div class="intro">
+                  <div class="intro--banner">
+                    <h1>Ház<br />brillar <br />tu negocio <br />en la web</h1>
+                    <button class="cta">
+                      Contactanos
+                      <svg
+                        version="1.1"
+                        id="Layer_1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 150 118"
+                        style="enable-background: new 0 0 150 118"
+                        xml:space="preserve"
+                      >
+                        <g
+                          transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)"
+                        >
+                          <path
+                            d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"
+                          />
+                        </g>
+                      </svg>
+                      <span class="btn-background"></span>
+                    </button>
+                    <img
+                      src="assets/img/introduction-visual.png"
+                      alt="Welcome"
+                    />
+                  </div>
+                  <div class="intro--options">
+                    <a href="#0">
+                      <h3>Desarrollo de Apps &amp;Webs customizables</h3>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                        sed do.
+                      </p>
+                    </a>
+                    <a href="#0">
+                      <h3>Desarollo de tiendas online</h3>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                        sed do.
+                      </p>
+                    </a>
+                    <a href="#0">
+                      <h3>Diseño UX/UI</h3>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                        sed do.
+                      </p>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Servicios ofrecidos.  -->
+              <li class="l-section section">
+                <div class="work">
+                  <h2>Servicios</h2>
+
+                  <div class="work--lockup">
+                    <ul class="slider">
+                      <li class="slider--item slider--item-left">
+                        <a href="#0">
+                          <div class="slider--item-image">
+                            <img
+                              src="assets/img/visualcoding.png"
+                              alt="Victory"
+                            />
+                          </div>
+                          <p class="slider--item-title">Diseño de Apps</p>
+                          <p class="slider--item-description">
+                            Diseño de aplicaciones a medida para todo tipo de
+                            plataformas.
+                          </p>
+                        </a>
+                      </li>
+                      <li class="slider--item slider--item-center">
+                        <a href="#0">
+                          <div class="slider--item-image">
+                            <img
+                              src="assets/img/diseñodeimagen.png"
+                              alt="Metiew and Smith"
+                            />
+                          </div>
+                          <p class="slider--item-title">Diseño de Web</p>
+                          <p class="slider--item-description">
+                            Diseño de landing pages, e-commerce, blogs, y CMS.
+                          </p>
+                        </a>
+                      </li>
+                      <li class="slider--item slider--item-right">
+                        <a href="#0">
+                          <div class="slider--item-image">
+                            <img
+                              src="assets/img/webdesign.png"
+                              alt="Alex Nowak"
+                            />
+                          </div>
+                          <p class="slider--item-title">Diseño de Producto</p>
+                          <p class="slider--item-description">
+                            Diseño UX, diseño de interfaces, y desarrollo de
+                            productos digitales.
+                          </p>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="slider--prev">
+                      <svg
+                        version="1.1"
+                        id="Layer_1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 150 118"
+                        style="enable-background: new 0 0 150 118"
+                        xml:space="preserve"
+                      >
+                        <g
+                          transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)"
+                        >
+                          <path
+                            d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29
+                                c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180
+                                c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <div class="slider--next">
+                      <svg
+                        version="1.1"
+                        id="Layer_1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 150 118"
+                        style="enable-background: new 0 0 150 118"
+                        xml:space="preserve"
+                      >
+                        <g
+                          transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)"
+                        >
+                          <path
+                            d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193
+                                    C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="l-section section">
+                <div class="about">
+                  <div class="about--banner">
+                    <h2>Diseñamos <br />tu éxito <br />en la web.</h2>
+                    <a href="#0"
+                      >Info de Servicios
+                      <span>
+                        <svg
+                          version="1.1"
+                          id="Layer_1"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          x="0px"
+                          y="0px"
+                          viewBox="0 0 150 118"
+                          style="enable-background: new 0 0 150 118"
+                          xml:space="preserve"
+                        >
+                          <g
+                            transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)"
+                          >
+                            <path
+                              d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"
+                            />
+                          </g>
+                        </svg>
+                      </span>
+                    </a>
+                    <img src="assets/img/about-visual.png" alt="Nosotros" />
+                  </div>
+                  <div class="about--options">
+                    <a href="#0">
+                      <h3>Equipo</h3>
+                    </a>
+                    <a href="#0">
+                      <h3>Filosofía</h3>
+                    </a>
+                    <a href="#0">
+                      <h3>Historia</h3>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="l-section section">
+                <div class="contact">
+                  <div class="contact--lockup">
+                    <div class="modal">
+                      <div class="modal--information">
+                        <p>Tucumán, Argentina</p>
+                        <a href="mailto:ouremail@gmail.com"
+                          >soluweb@gmail.com</a
+                        >
+                        <a
+                          href="https://api.whatsapp.com/send?phone=543855861884"
+                          >+543855861884
+                        </a>
+                      </div>
+                      <ul class="modal--options">
+                        <li><a href="#0">Instagram</a></li>
+                        <li><a href="#0">Facebook</a></li>
+                        <li>
+                          <a href="mailto:ouremail@gmail.com">Contáctanos</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="l-section section">
+                <div class="hire">
+                  <h2>¿Qué servicio quieres contratar?</h2>
+                  <!-- checkout formspree.io for easy form setup -->
+                  <form
+                    class="work-request"
+                    onsubmit="enviarMensajeWhatsapp(event)"
+                  >
+                    <div class="work-request--options">
+                      <span class="options-a">
+                        <input id="opt-1" type="checkbox" value="app design" />
+                        <label for="opt-1">
+                          <svg
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            viewBox="0 0 150 111"
+                            style="enable-background: new 0 0 150 111"
+                            xml:space="preserve"
+                          >
+                            <g
+                              transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)"
+                            >
+                              <path
+                                d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"
+                              />
+                            </g>
+                          </svg>
+                          Diseño de Apps
+                        </label>
+                        <input
+                          id="opt-2"
+                          type="checkbox"
+                          value="graphic design"
+                        />
+                        <label for="opt-2">
+                          <svg
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            viewBox="0 0 150 111"
+                            style="enable-background: new 0 0 150 111"
+                            xml:space="preserve"
+                          >
+                            <g
+                              transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)"
+                            >
+                              <path
+                                d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"
+                              />
+                            </g>
+                          </svg>
+                          Diseño Gráfico
+                        </label>
+                        <input
+                          id="opt-3"
+                          type="checkbox"
+                          value="motion design"
+                        />
+                        <label for="opt-3">
+                          <svg
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            viewBox="0 0 150 111"
+                            style="enable-background: new 0 0 150 111"
+                            xml:space="preserve"
+                          >
+                            <g
+                              transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)"
+                            >
+                              <path
+                                d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"
+                              />
+                            </g>
+                          </svg>
+                          Diseño UI
+                        </label>
+                      </span>
+                      <span class="options-b">
+                        <input id="opt-4" type="checkbox" value="ux design" />
+                        <label for="opt-4">
+                          <svg
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            viewBox="0 0 150 111"
+                            style="enable-background: new 0 0 150 111"
+                            xml:space="preserve"
+                          >
+                            <g
+                              transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)"
+                            >
+                              <path
+                                d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"
+                              />
+                            </g>
+                          </svg>
+                          Diseño UX
+                        </label>
+                        <input id="opt-5" type="checkbox" value="webdesign" />
+                        <label for="opt-5">
+                          <svg
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            viewBox="0 0 150 111"
+                            style="enable-background: new 0 0 150 111"
+                            xml:space="preserve"
+                          >
+                            <g
+                              transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)"
+                            >
+                              <path
+                                d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"
+                              />
+                            </g>
+                          </svg>
+                          Diseño Web
+                        </label>
+                        <input id="opt-6" type="checkbox" value="marketing" />
+                        <label for="opt-6">
+                          <svg
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            viewBox="0 0 150 111"
+                            style="enable-background: new 0 0 150 111"
+                            xml:space="preserve"
+                          >
+                            <g
+                              transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)"
+                            >
+                              <path
+                                d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"
+                              />
+                            </g>
+                          </svg>
+                          Marketing
+                        </label>
+                      </span>
+                    </div>
+                    <div class="work-request--information">
+                      <div class="information-name">
+                        <input
+                          id="name"
+                          type="text"
+                          spellcheck="false"
+                          required
+                        />
+                        <label for="name">Nombre</label>
+                      </div>
+                      <div class="information-email">
+                        <input
+                          id="email"
+                          type="email"
+                          spellcheck="false"
+                          required
+                        />
+                        <label for="email">Email</label>
+                      </div>
+                    </div>
+                    <input type="submit" value="Cotizar Servicio" />
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <ul class="outer-nav">
+        <li class="is-active">Inicio</li>
+        <li>Servicios</li>
+        <li>Nosotros</li>
+        <li>Estamos</li>
+        <li>Cotizar</li>
+      </ul>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      window.jQuery ||
+        document.write(
+          '<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>'
+        );
+    </script>
+    <script src="assets/js/functions-min.js"></script>
+    <script>
+      function enviarMensajeWhatsapp(event) {
+        event.preventDefault(); // Evitar que el formulario se envíe de manera tradicional
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
+        // Obtener los valores del formulario
+        var nombre = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+
+        // Obtener las opciones seleccionadas
+        var opcionesSeleccionadas = [];
+        var checkboxes = document.querySelectorAll(
+          'input[type="checkbox"]:checked'
+        );
+        checkboxes.forEach(function (checkbox) {
+          opcionesSeleccionadas.push(checkbox.value.toUpperCase());
+        });
+
+        // Construir el mensaje de WhatsApp con enfoque comercial y emojis
+        var mensajeWhatsApp =
+          '📲 Hola, me interesan los siguientes servicios:\n';
+        opcionesSeleccionadas.forEach(function (opcion) {
+          mensajeWhatsApp += '- *' + opcion + '*\n'; // Texto en negrita
+        });
+        mensajeWhatsApp +=
+          'Mi nombre es ' +
+          nombre +
+          ' y mi correo electrónico es: ' +
+          email +
+          '. Por favor, contáctame para discutir más detalles.';
+
+        // Codificar el mensaje para que sea una URL válida para WhatsApp
+        var mensajeWhatsAppCodificado = encodeURIComponent(mensajeWhatsApp);
+
+        // Abrir WhatsApp con el mensaje generado
+        window.open(
+          'https://api.whatsapp.com/send?phone=+543855861884&text=' +
+            mensajeWhatsAppCodificado
+        );
+      }
     </script>
   </body>
 </html>
