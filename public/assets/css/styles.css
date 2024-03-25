@@ -27,13 +27,23 @@
 
 }
 
+.about--banner img {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    max-width: 450px;   
+    mask-image: linear-gradient(black 60%, transparent);
+  }
+
 
 /* medias querys */
-@media (max-width: 640px) {
+
+
+@media (max-width: 600px) {
   .about--banner img {
     display: flex;
     position: absolute;
-    bottom: 230px;
+    bottom: 100px;
     right: calc(50% - 100px); /* Center horizontally */
     max-width: 200px;
     text-align: center;
@@ -49,6 +59,14 @@
     margin-top: 200px!important;
   }
 
+.intro--banner h1 {
+    margin-top: 205px;
+    font-size: 45px;
+}
+
+
+
+/* 
   .about--options {
    
     display: flex;
@@ -62,7 +80,7 @@
     margin: 0;
     padding: 0;
 
-}
+} */
 
   
 }
