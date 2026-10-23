@@ -1,16 +1,22 @@
 {
   "hosting": {
-    "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
+    "public": "dist",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "headers": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/_astro/**",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      },
+      {
+        "source": "**/*.@(png|jpg|jpeg|webp|avif|svg|woff2)",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
       }
+    ],
+    "redirects": [
+      { "source": "/index.html", "destination": "/", "type": 301 },
+      { "source": "/assets/pages/services.html", "destination": "/#servicios", "type": 301 }
     ]
   }
 }

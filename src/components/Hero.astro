@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import { img } from '../lib/images';
+import { waLink } from '../data/site';
+const hero = img('hero');
+---
+
+<section class="relative isolate overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28">
+  <div class="grid-bg absolute inset-0 -z-20 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]"></div>
+  <div class="absolute -top-40 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-brand/25 blur-[140px]"></div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-[1.05fr_1fr] lg:px-8">
+    <div class="reveal">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-ink-200 backdrop-blur">
+        <span class="size-2 animate-pulse-soft rounded-full bg-spark"></span>
+        Nuevo: agentes de IA para WhatsApp
+      </span>
+      <h1 class="mt-6 text-4xl leading-[1.05] font-black sm:text-5xl lg:text-[4.2rem]">
+        Tu negocio,<br />
+        en <span class="skew-tag mx-1">piloto</span><br class="sm:hidden" /> automático.
+      </h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-300">
+        Incorporamos <strong class="text-white">inteligencia artificial</strong>, automatizaciones, CRM y sistemas de gestión a medida para que tu
+        empresa venda más, atienda mejor y deje de perder tiempo en tareas repetitivas.
+      </p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <a href={waLink('Hola Soluweb! Quiero un diagnóstico gratis para automatizar mi negocio.')} target="_blank" rel="noopener" class="btn-primary !px-7 !py-4 !text-base">
+          Diagnóstico gratis
+          <svg class="size-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M11.3 3.3a1 1 0 0 1 1.4 0l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 0 1-1.4-1.4L15.6 11H2a1 1 0 1 1 0-2h13.6l-4.3-4.3a1 1 0 0 1 0-1.4Z"></path></svg>
+        </a>
+        <a href="#servicios" class="btn-ghost !px-7 !py-4 !text-base">Ver servicios</a>
+      </div>
+      <dl class="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
+        <div><dt class="text-xs text-ink-400">Atención</dt><dd class="font-display text-2xl font-extrabold text-white">24/7</dd></div>
+        <div><dt class="text-xs text-ink-400">Implementación</dt><dd class="font-display text-2xl font-extrabold text-white">Por etapas</dd></div>
+        <div><dt class="text-xs text-ink-400">Diagnóstico</dt><dd class="font-display text-2xl font-extrabold text-white">Sin costo</dd></div>
+      </dl>
+    </div>
+
+    <div class="reveal relative">
+      <div class="absolute inset-6 -z-10 -skew-x-12 rounded-[2rem] bg-brand/30 blur-3xl"></div>
+      {
+        hero ? (
+          <Image src={hero} alt="Núcleo de inteligencia artificial conectado a CRM, chats, facturas y agenda" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 50vw, 100vw" loading="eager" fetchpriority="high" class="w-full rounded-[2rem] border border-white/10 shadow-2xl shadow-brand/20" />
+        ) : (
+          <div class="aspect-video w-full rounded-[2rem] border border-white/10 bg-ink-700" />
+        )
+      }
+      <div class="card absolute -bottom-6 -left-4 hidden animate-float items-center gap-3 px-4 py-3 shadow-xl sm:flex">
+        <span class="grid size-9 place-items-center rounded-xl bg-brand text-white">
+          <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg>
+        </span>
+        <div class="text-left">
+          <p class="text-xs text-ink-400">Lead calificado por IA</p>
+          <p class="text-sm font-semibold text-white">Turno agendado: mar 10:30</p>
+        </div>
+      </div>
+      <div class="card absolute -top-5 right-4 hidden animate-float items-center gap-2 px-4 py-2.5 shadow-xl [animation-delay:-3s] sm:flex">
+        <span class="size-2 rounded-full bg-emerald-400"></span>
+        <p class="text-xs font-medium text-white">Flujo activo · 1.284 tareas hoy</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,129 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/montserrat';
+@import '@fontsource-variable/inter';
+
+/* ============ Tokens de marca Soluweb ============ */
+@theme {
+  --color-brand: #0f33ff; /* Azul Soluweb */
+  --color-brand-50: #eef1ff;
+  --color-brand-100: #d9dfff;
+  --color-brand-200: #b3bfff;
+  --color-brand-300: #7d90ff;
+  --color-brand-400: #4a63ff;
+  --color-brand-500: #0f33ff;
+  --color-brand-600: #0a26d6;
+  --color-brand-700: #081ca6;
+  --color-brand-800: #06157a;
+  --color-brand-900: #040d4d;
+  --color-ink: #0c0c0c; /* Negro Soluweb */
+  --color-ink-900: #0c0c0c;
+  --color-ink-800: #141414;
+  --color-ink-700: #1c1c1e;
+  --color-ink-600: #282828;
+  --color-ink-500: #3a3a3c;
+  --color-ink-400: #6b6b70;
+  --color-ink-300: #a1a1a6;
+  --color-ink-200: #d4d4d8;
+  --color-spark: #fff498; /* Amarillo acento */
+
+  --font-display: 'Montserrat Variable', 'Montserrat', system-ui, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    background: var(--color-ink);
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-ink font-sans text-ink-200 antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-white;
+    letter-spacing: -0.02em;
+  }
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-300);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Paralelogramo: el motivo del logo */
+  .skew-tag {
+    @apply relative inline-block px-3 text-white;
+    isolation: isolate;
+  }
+  .skew-tag::before {
+    content: '';
+    @apply absolute inset-0 -z-10 bg-brand;
+    transform: skewX(-18deg);
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-200;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-200 bg-brand text-white shadow-[0_8px_30px_-6px_rgba(15,51,255,0.6)] hover:bg-brand-400 hover:shadow-[0_10px_40px_-4px_rgba(15,51,255,0.8)];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-200 border border-white/15 bg-white/5 text-white backdrop-blur hover:border-white/30 hover:bg-white/10;
+  }
+  .card {
+    @apply rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-display text-xs font-bold tracking-[0.2em] text-brand-300 uppercase;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply inline-block h-2.5 w-4 bg-brand;
+    transform: skewX(-18deg);
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-white via-brand-200 to-brand-400 bg-clip-text text-transparent;
+  }
+}
+
+/* Animación de aparición al hacer scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation: none !important; scroll-behavior: auto !important; }
+}

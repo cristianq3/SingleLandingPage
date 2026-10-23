@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const colors = [
+  { name: 'Azul Soluweb', hex: '#0F33FF', rgb: '15, 51, 255', use: 'Color principal. Paralelogramo del logo, botones, acentos.', cls: 'bg-brand' },
+  { name: 'Negro Soluweb', hex: '#0C0C0C', rgb: '12, 12, 12', use: 'Fondos principales y texto sobre claro.', cls: 'bg-ink border border-white/15' },
+  { name: 'Blanco', hex: '#FFFFFF', rgb: '255, 255, 255', use: 'Texto sobre oscuro, logotipo.', cls: 'bg-white' },
+  { name: 'Chispa', hex: '#FFF498', rgb: '255, 244, 152', use: 'Acento puntual (máx. 5%): estados, novedades.', cls: 'bg-spark' },
+];
+const scale = [
+  ['50', '#EEF1FF'], ['100', '#D9DFFF'], ['200', '#B3BFFF'], ['300', '#7D90FF'], ['400', '#4A63FF'],
+  ['500', '#0F33FF'], ['600', '#0A26D6'], ['700', '#081CA6'], ['800', '#06157A'], ['900', '#040D4D'],
+];
+const grays = [['900', '#0C0C0C'], ['800', '#141414'], ['700', '#1C1C1E'], ['600', '#282828'], ['500', '#3A3A3C'], ['400', '#6B6B70'], ['300', '#A1A1A6'], ['200', '#D4D4D8']];
+
+const logos = [
+  { file: 'logo-dark-bg', label: 'Principal · fondo oscuro', bg: 'bg-ink' },
+  { file: 'logo-light-bg', label: 'Principal · fondo claro', bg: 'bg-white' },
+  { file: 'logo-mono-white', label: 'Monocromo blanco', bg: 'bg-brand' },
+  { file: 'logo-mono-black', label: 'Monocromo negro', bg: 'bg-spark' },
+];
+const icons = [
+  { file: 'icon-dark', label: 'Isotipo · oscuro' },
+  { file: 'icon-light', label: 'Isotipo · claro' },
+  { file: 'icon-blue', label: 'Isotipo · azul' },
+  { file: 'icon-transparent', label: 'Isotipo · sin fondo' },
+];
+---
+
+<Layout title="Manual de marca | Soluweb" description="Guía de identidad visual de Soluweb: logo, colores, tipografía y uso." noindex>
+  <section class="mx-auto max-w-6xl px-5 pt-32 pb-16 lg:px-8">
+    <span class="eyebrow">Manual de marca · v2.0</span>
+    <h1 class="mt-4 text-4xl font-black sm:text-6xl">Identidad <span class="skew-tag">Soluweb</span></h1>
+    <p class="mt-6 max-w-2xl text-lg text-ink-300">
+      La evolución de la marca mantiene su esencia: el paralelogramo azul inclinado que impulsa la palabra <em>web</em> hacia adelante. Ahora representa
+      movimiento, automatización y progreso.
+    </p>
+  </section>
+
+  <!-- Concepto -->
+  <section class="mx-auto max-w-6xl px-5 pb-20 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        [
+          ['Esencia', 'Soluciones simples para negocios reales. Tecnología que trabaja para las personas.'],
+          ['Personalidad', 'Cercana, clara, moderna y resolutiva. Hablamos de vos, en argentino, sin tecnicismos.'],
+          ['Motivo gráfico', 'El paralelogramo inclinado (-18°): avance, velocidad y automatización. Se usa en etiquetas, viñetas y fondos.'],
+        ].map(([t, d]) => (
+          <div class="card p-7">
+            <h3 class="text-lg font-bold">{t}</h3>
+            <p class="mt-2 text-sm text-ink-300">{d}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Logos -->
+  <section class="mx-auto max-w-6xl px-5 pb-20 lg:px-8">
+    <h2 class="text-2xl font-extrabold">Logotipo</h2>
+    <p class="mt-2 text-ink-300">Texto convertido a trazos (Montserrat Black). Descargá SVG para web e imprenta, PNG para redes y documentos.</p>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      {
+        logos.map((l) => (
+          <figure class="overflow-hidden rounded-3xl border border-white/10">
+            <div class={`grid h-48 place-items-center p-10 ${l.bg}`}>
+              <img src={`/brand/${l.file}.svg`} alt={l.label} class="max-h-20 w-auto" loading="lazy" />
+            </div>
+            <figcaption class="flex items-center justify-between bg-ink-800 px-5 py-3 text-sm">
+              <span class="text-white">{l.label}</span>
+              <span class="space-x-3">
+                <a class="text-brand-300 hover:text-white" href={`/brand/${l.file}.svg`} download>SVG</a>
+                <a class="text-brand-300 hover:text-white" href={`/brand/${l.file}.png`} download>PNG</a>
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <h3 class="mt-14 text-xl font-bold">Isotipo</h3>
+    <p class="mt-2 text-ink-300">"s." sobre el paralelogramo. Para avatares, favicon y espacios reducidos.</p>
+    <div class="mt-6 grid grid-cols-2 gap-5 md:grid-cols-4">
+      {
+        icons.map((i) => (
+          <figure class="rounded-3xl border border-white/10 bg-ink-800 p-5 text-center">
+            <img src={`/brand/${i.file}.svg`} alt={i.label} class="mx-auto size-28" loading="lazy" />
+            <figcaption class="mt-3 text-sm text-white">{i.label}</figcaption>
+            <p class="mt-1 space-x-3 text-xs">
+              <a class="text-brand-300" href={`/brand/${i.file}.svg`} download>SVG</a>
+              <a class="text-brand-300" href={`/brand/${i.file}.png`} download>PNG</a>
+            </p>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-2">
+      <div class="card p-7">
+        <h3 class="font-bold text-emerald-400">✓ Hacer</h3>
+        <ul class="mt-3 list-disc space-y-1.5 pl-5 text-sm text-ink-300">
+          <li>Respetar un margen libre igual a la altura de la "b" alrededor del logo.</li>
+          <li>Ancho mínimo: 96 px en pantalla / 25 mm impreso.</li>
+          <li>Usar la versión monocromo sobre fotos o fondos de color.</li>
+        </ul>
+      </div>
+      <div class="card p-7">
+        <h3 class="font-bold text-red-400">✕ No hacer</h3>
+        <ul class="mt-3 list-disc space-y-1.5 pl-5 text-sm text-ink-300">
+          <li>Deformar, rotar o cambiar la inclinación del paralelogramo.</li>
+          <li>Cambiar el azul por otro tono o agregar degradés al logo.</li>
+          <li>Agregar sombras, contornos o efectos.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colores -->
+  <section class="mx-auto max-w-6xl px-5 pb-20 lg:px-8">
+    <h2 class="text-2xl font-extrabold">Colores</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        colors.map((c) => (
+          <div class="overflow-hidden rounded-3xl border border-white/10 bg-ink-800">
+            <div class={`h-32 ${c.cls}`} />
+            <div class="p-5">
+              <p class="font-bold text-white">{c.name}</p>
+              <p class="mt-1 font-mono text-sm text-ink-300">HEX {c.hex}</p>
+              <p class="font-mono text-sm text-ink-300">RGB {c.rgb}</p>
+              <p class="mt-3 text-xs text-ink-400">{c.use}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <h3 class="mt-12 font-bold">Escala azul</h3>
+    <div class="mt-4 grid grid-cols-5 overflow-hidden rounded-2xl sm:grid-cols-10">
+      {scale.map(([k, v]) => <div class="h-20 p-2 text-[10px] font-mono" style={`background:${v};color:${Number(k) >= 400 ? '#fff' : '#0C0C0C'}`}>{k}<br />{v}</div>)}
+    </div>
+    <h3 class="mt-8 font-bold">Escala neutra</h3>
+    <div class="mt-4 grid grid-cols-4 overflow-hidden rounded-2xl sm:grid-cols-8">
+      {grays.map(([k, v]) => <div class="h-20 p-2 text-[10px] font-mono" style={`background:${v};color:${Number(k) <= 300 ? '#0C0C0C' : '#fff'}`}>{k}<br />{v}</div>)}
+    </div>
+  </section>
+
+  <!-- Tipografía -->
+  <section class="mx-auto max-w-6xl px-5 pb-20 lg:px-8">
+    <h2 class="text-2xl font-extrabold">Tipografía</h2>
+    <div class="mt-8 grid gap-5 md:grid-cols-2">
+      <div class="card p-8">
+        <p class="text-xs tracking-widest text-brand-300 uppercase">Títulos · Montserrat</p>
+        <p class="mt-4 font-display text-5xl font-black text-white">Aa Bb 123</p>
+        <p class="mt-4 text-sm text-ink-300">Black 900 / ExtraBold 800 / Bold 700. Interletrado -2%. Logotipo y titulares.</p>
+      </div>
+      <div class="card p-8">
+        <p class="text-xs tracking-widest text-brand-300 uppercase">Textos · Inter</p>
+        <p class="mt-4 font-sans text-5xl font-semibold text-white">Aa Bb 123</p>
+        <p class="mt-4 text-sm text-ink-300">Regular 400 / Medium 500 / SemiBold 600. Párrafos, interfaces y datos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Voz -->
+  <section class="mx-auto max-w-6xl px-5 pb-24 lg:px-8">
+    <h2 class="text-2xl font-extrabold">Voz y tono</h2>
+    <div class="mt-8 grid gap-5 md:grid-cols-2">
+      <div class="card p-7">
+        <p class="text-sm font-bold text-emerald-400">Así sí</p>
+        <p class="mt-3 text-white">"Tu negocio, en piloto automático."</p>
+        <p class="mt-2 text-white">"Respondé a tus clientes 24/7 sin sumar personal."</p>
+      </div>
+      <div class="card p-7">
+        <p class="text-sm font-bold text-red-400">Así no</p>
+        <p class="mt-3 text-ink-300">"Implementamos soluciones disruptivas de hiperautomatización cognitiva end-to-end."</p>
+      </div>
+    </div>
+    <p class="mt-10 text-sm text-ink-400">Imagen de marca: renders 3D de vidrio oscuro con luz azul #0F33FF, paralelogramos inclinados y un toque mínimo de amarillo. Nunca fondos blancos ni fotos de stock genéricas.</p>
+  </section>
+</Layout>

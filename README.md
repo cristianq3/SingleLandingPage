@@ -1,18 +1,37 @@
-# [Global: HTML5 website template](http://buckymaler.com/global)
+# Soluweb — IA, Automatización, CRM y Sistemas de Gestión
 
-### [Featured on Freebiesbug](http://freebiesbug.com/psd-freebies/global-futuristic-one-page-portfolio-psd-html/)
+Sitio oficial de **[soluweb.com.ar](https://soluweb.com.ar)** desarrollado en **Astro 5 + Tailwind CSS v4** y desplegado en **Firebase Hosting**.
 
-Global is a modern and sleek website template crafted for professionals in the creative industry. Global can serve as a single page portfolio or be easily modified to serve as the perfect beginning for a hip creative agency.
+## Estructura del Proyecto
 
-The original PSD is included and was provided by [Sergey Melnik](https://www.behance.net/SergeyMelnik).
+- `src/data/site.ts`: Datos centralizados (contacto, WhatsApp, servicios, soluciones por rubro, proceso, FAQs).
+- `src/pages/index.astro`: Landing page principal.
+- `src/pages/marca.astro`: Manual de marca interactivo (`/marca`) con descarga de logos e isotipos en SVG y PNG.
+- `src/components/`: Componentes modulares (`Header.astro`, `Hero.astro`, `Contact.astro`, `Footer.astro`).
+- `src/assets/img/`: Ilustraciones 3D de marca optimizadas automáticamente por Astro.
+- `public/brand/`: Kit completo de identidad visual (logos e isotipos en todas sus variantes).
+- `scripts/`: Generadores vectoriales (`build-brand.mjs` y `build-og.mjs`).
 
-This project was developed with HTML5, Sass, jQuery, and Hammer.js.
+## Comandos
 
-Performance basics are covered: assets are minified into single CSS and JS files, and the images are optimized.
+```bash
+# Instalar dependencias
+npm install
 
-[LIVE PREVIEW](http://buckymaler.com/global)
+# Servidor de desarrollo local
+npm run dev
 
-## Misc:
+# Regenerar kit de marca y banner OpenGraph
+npm run brand
 
-* Follow Bucky: [Twitter](https://twitter.com/BuckyMaler), [GitHub](https://github.com/BuckyMaler)
-* Follow Sergey: [Dribbble](https://dribbble.com/sergeymelnik), [Bēhance](https://www.behance.net/SergeyMelnik)
+# Compilar para producción (genera carpeta dist/)
+npm run build
+
+# Previsualizar build de producción
+npm run preview
+```
+
+## Despliegue
+
+El repositorio cuenta con integración continua en `.github/workflows/`:
+- Al hacer push o merge a `main`, GitHub Actions ejecuta `npm ci && npm run build` y publica `dist/` en Firebase Hosting (`soluweb-la`).

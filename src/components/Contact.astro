@@ -1,0 +1,97 @@
+---
+import { SERVICES, SITE, waLink } from '../data/site';
+---
+
+<section id="contacto" class="relative isolate overflow-hidden py-24">
+  <div class="absolute bottom-0 left-1/2 -z-10 h-[500px] w-[1000px] -translate-x-1/2 rounded-full bg-brand/20 blur-[150px]"></div>
+  <div class="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1fr_1.1fr] lg:px-8">
+    <div class="reveal">
+      <span class="eyebrow">Contacto</span>
+      <h2 class="mt-4 text-3xl font-extrabold sm:text-5xl">Contanos qué querés automatizar</h2>
+      <p class="mt-5 max-w-md text-lg text-ink-300">
+        Agendamos una llamada de diagnóstico <strong class="text-white">sin costo</strong> y te decimos qué se puede automatizar, cuánto tiempo vas a ahorrar y por dónde
+        conviene empezar.
+      </p>
+      <ul class="mt-10 space-y-4">
+        <li>
+          <a href={waLink()} target="_blank" rel="noopener" class="card flex items-center gap-4 p-5 transition hover:border-brand/60">
+            <span class="grid size-11 place-items-center rounded-xl bg-[#25D366]/15 text-[#25D366]">
+              <svg class="size-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12.05 21.5a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36A9.43 9.43 0 1 1 12.05 21.5m8.03-17.46A11.34 11.34 0 0 0 2.22 17.73L.6 23.6l6.02-1.58A11.35 11.35 0 0 0 20.08 4.04"></path></svg>
+            </span>
+            <span><span class="block text-xs text-ink-400">WhatsApp</span><span class="font-semibold text-white">{SITE.whatsappDisplay}</span></span>
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${SITE.email}`} class="card flex items-center gap-4 p-5 transition hover:border-brand/60">
+            <span class="grid size-11 place-items-center rounded-xl bg-brand/20 text-brand-300">
+              <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path></svg>
+            </span>
+            <span><span class="block text-xs text-ink-400">Email</span><span class="font-semibold text-white">{SITE.email}</span></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <form id="contact-form" class="card reveal space-y-5 p-7 sm:p-9" novalidate>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="block">
+          <span class="text-sm font-medium text-ink-200">Nombre *</span>
+          <input name="nombre" required autocomplete="name" class="mt-2 w-full rounded-xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder:text-ink-500 focus:border-brand focus:outline-none" placeholder="Tu nombre" />
+        </label>
+        <label class="block">
+          <span class="text-sm font-medium text-ink-200">Empresa</span>
+          <input name="empresa" autocomplete="organization" class="mt-2 w-full rounded-xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder:text-ink-500 focus:border-brand focus:outline-none" placeholder="Nombre del negocio" />
+        </label>
+      </div>
+      <fieldset>
+        <legend class="text-sm font-medium text-ink-200">¿Qué te interesa? *</legend>
+        <div class="mt-3 flex flex-wrap gap-2">
+          {
+            SERVICES.map((s) => (
+              <label class="cursor-pointer">
+                <input type="checkbox" name="servicios" value={s.title} class="peer sr-only" />
+                <span class="inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-ink-200 transition peer-checked:border-brand peer-checked:bg-brand peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-brand-300 hover:border-white/30">
+                  {s.title}
+                </span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+      <label class="block">
+        <span class="text-sm font-medium text-ink-200">Contanos brevemente tu necesidad</span>
+        <textarea name="mensaje" rows="4" class="mt-2 w-full rounded-xl border border-white/10 bg-ink/60 px-4 py-3 text-white placeholder:text-ink-500 focus:border-brand focus:outline-none" placeholder="Ej: recibimos 100 consultas por día por WhatsApp y queremos responderlas automáticamente..."></textarea>
+      </label>
+      <p id="form-error" class="hidden text-sm text-red-400" role="alert"></p>
+      <button type="submit" class="btn-primary w-full !py-4 !text-base">
+        Enviar por WhatsApp
+        <svg class="size-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M11.3 3.3a1 1 0 0 1 1.4 0l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 0 1-1.4-1.4L15.6 11H2a1 1 0 1 1 0-2h13.6l-4.3-4.3a1 1 0 0 1 0-1.4Z"></path></svg>
+      </button>
+      <p class="text-center text-xs text-ink-400">Respondemos en menos de 24 h hábiles.</p>
+    </form>
+  </div>
+</section>
+
+<script define:vars={{ phone: SITE.whatsapp }}>
+  const form = document.getElementById('contact-form');
+  const err = document.getElementById('form-error');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const nombre = String(data.get('nombre') || '').trim();
+    const empresa = String(data.get('empresa') || '').trim();
+    const mensaje = String(data.get('mensaje') || '').trim();
+    const servicios = data.getAll('servicios');
+    const fail = (m) => { err.textContent = m; err.classList.remove('hidden'); };
+    if (!nombre) return fail('Por favor, completá tu nombre.');
+    if (!servicios.length) return fail('Elegí al menos un servicio.');
+    err.classList.add('hidden');
+
+    let txt = `Hola Soluweb! Soy *${nombre}*`;
+    if (empresa) txt += ` de *${empresa}*`;
+    txt += '.\nMe interesan:\n' + servicios.map((s) => `• ${s}`).join('\n');
+    if (mensaje) txt += `\n\n${mensaje}`;
+    txt += '\n\n¿Podemos agendar el diagnóstico gratis?';
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(txt)}`, '_blank', 'noopener');
+  });
+</script>
