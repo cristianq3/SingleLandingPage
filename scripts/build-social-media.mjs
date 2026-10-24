@@ -207,12 +207,12 @@ async function buildSlide({
     svg += renderLine(fBold, numStr, pillX + (pillW - nw) / 2, 93, 20, '#B3BFFF', 1);
   }
 
-  let cursorY = height === 1920 ? 250 : ctaBox && bullets.length > 0 ? 165 : 195;
+  let cursorY = height === 1920 ? 280 : ctaBox && bullets.length > 0 ? 165 : 195;
 
   // Eyebrow badge
   if (eyebrow) {
-    svg += renderBadge(eyebrow.toUpperCase(), 72, cursorY, '#0F33FF', '#FFFFFF', 20);
-    cursorY += ctaBox && bullets.length > 0 ? 74 : 88;
+    svg += renderBadge(eyebrow.toUpperCase(), 72, cursorY, '#0F33FF', '#FFFFFF', height === 1920 ? 22 : 20);
+    cursorY += height === 1920 ? 95 : ctaBox && bullets.length > 0 ? 74 : 88;
   }
 
   // Headline
@@ -222,22 +222,22 @@ async function buildSlide({
     cursorY += lineH;
   }
 
-  cursorY += ctaBox && bullets.length > 0 ? 22 : 34;
+  cursorY += height === 1920 ? 38 : ctaBox && bullets.length > 0 ? 22 : 34;
 
   // Subtext
   if (subtext) {
-    const subSize = ctaBox && bullets.length > 0 ? 26 : 30;
-    const subLH = ctaBox && bullets.length > 0 ? 36 : 44;
+    const subSize = height === 1920 ? 32 : ctaBox && bullets.length > 0 ? 26 : 30;
+    const subLH = height === 1920 ? 46 : ctaBox && bullets.length > 0 ? 36 : 44;
     const p = renderParagraph(fReg, subtext, 72, cursorY + 22, width - 144, subSize, subLH, '#D4D4D8', 0);
     svg += p.svg;
-    cursorY = p.bottomY + (ctaBox && bullets.length > 0 ? 16 : 28);
+    cursorY = p.bottomY + (height === 1920 ? 36 : ctaBox && bullets.length > 0 ? 16 : 28);
   }
 
   // Bullets
   if (bullets.length > 0) {
     const hasSub = bullets.some((b) => b.subtitle);
-    const cardH = hasSub ? (ctaBox ? 104 : 120) : ctaBox ? 72 : 96;
-    const gap = ctaBox ? 12 : 20;
+    const cardH = height === 1920 ? (hasSub ? 134 : 106) : hasSub ? (ctaBox ? 104 : 120) : ctaBox ? 72 : 96;
+    const gap = height === 1920 ? 20 : ctaBox ? 12 : 20;
     for (const b of bullets) {
       svg += renderBulletCard({
         x: 72,
@@ -252,19 +252,37 @@ async function buildSlide({
     }
   }
 
+  // Sticker Interactivo para Historias (Encuesta / Interacción)
+  if (ctaBox && ctaBox.interactivePoll) {
+    const pollY = cursorY + 20;
+    const pollW = width - 144;
+    const pollH = 170;
+    svg += `<rect x="72" y="${pollY}" width="${pollW}" height="${pollH}" rx="28" fill="#141418" stroke="#0F33FF" stroke-width="2"/>`;
+    svg += renderLine(fBold, ctaBox.interactivePoll.question.toUpperCase(), 104, pollY + 44, 20, '#FFF498', 1.5);
+    const optW = (pollW - 56) / 2;
+    // Opcion 1
+    svg += `<rect x="96" y="${pollY + 70}" width="${optW}" height="64" rx="18" fill="#0F33FF"/>`;
+    svg += renderLine(fBlack, ctaBox.interactivePoll.opt1, 120, pollY + 111, 22, '#FFFFFF', 0.5);
+    // Opcion 2
+    svg += `<rect x="${96 + optW + 16}" y="${pollY + 70}" width="${optW}" height="64" rx="18" fill="#282830"/>`;
+    svg += renderLine(fBlack, ctaBox.interactivePoll.opt2, 96 + optW + 40, pollY + 111, 22, '#FFFFFF', 0.5);
+    cursorY = pollY + pollH + 20;
+  }
+
   // CTA Box (Lead Magnet Box)
-  if (ctaBox) {
-    const boxY = Math.min(Math.max(cursorY + 12, height - 420), height - 355);
-    const boxH = 225;
+  if (ctaBox && !ctaBox.interactivePoll) {
+    const boxY = height === 1920 ? Math.max(cursorY + 30, height - 520) : Math.min(Math.max(cursorY + 12, height - 420), height - 355);
+    const boxH = height === 1920 ? 275 : 225;
     svg += `<rect x="72" y="${boxY}" width="${width - 144}" height="${boxH}" rx="28" fill="#0F33FF"/>`;
     svg += `<polygon points="${width - 280},${boxY} ${width - 110},${boxY} ${width - 170},${boxY + boxH} ${width - 340},${boxY + boxH}" fill="#FFFFFF" fill-opacity="0.09"/>`;
-    svg += renderLine(fBold, ctaBox.kicker.toUpperCase(), 112, boxY + 50, 20, '#FFF498', 2);
-    svg += renderRichLine(fBlack, ctaBox.title, 112, boxY + 106, 40, '#FFFFFF', -1);
-    svg += renderRichLine(fBold, ctaBox.subtitle, 112, boxY + 152, 23, '#E0E7FF', 0);
+    svg += renderLine(fBold, ctaBox.kicker.toUpperCase(), 112, boxY + (height === 1920 ? 56 : 50), 20, '#FFF498', 2);
+    svg += renderRichLine(fBlack, ctaBox.title, 112, boxY + (height === 1920 ? 122 : 106), height === 1920 ? 46 : 40, '#FFFFFF', -1);
+    svg += renderRichLine(fBold, ctaBox.subtitle, 112, boxY + (height === 1920 ? 174 : 152), height === 1920 ? 25 : 23, '#E0E7FF', 0);
     if (ctaBox.button) {
       const bw = textWidth(fBlack, ctaBox.button, 20, 1) + 56;
-      svg += `<rect x="112" y="${boxY + 170}" width="${bw}" height="38" rx="19" fill="#0C0C0C"/>`;
-      svg += renderLine(fBlack, ctaBox.button, 140, boxY + 196, 20, '#FFF498', 1);
+      const btnY = boxY + (height === 1920 ? 204 : 170);
+      svg += `<rect x="112" y="${btnY}" width="${bw}" height="42" rx="21" fill="#0C0C0C"/>`;
+      svg += renderLine(fBlack, ctaBox.button, 140, btnY + 28, 20, '#FFF498', 1);
     }
   }
 
@@ -633,6 +651,177 @@ const REELS_COVERS = [
   },
 ];
 
+const STORY_CAROUSELS = [
+  {
+    folder: '06-historias-carrusel-whatsapp-ia',
+    title: 'Carrusel Stories 01 — El bot de WhatsApp que sí vende (IA 24/7)',
+    slides: [
+      {
+        bgImage: 'svc-ia.jpg',
+        eyebrow: 'Atención al Cliente',
+        headlineLines: ['¿Cuántas ventas', 'perdés cuando', 'respondés [tarde]?'],
+        headlineSize: 76,
+        subtext: 'El 78% de los clientes le compra al primero que responde con claridad. Si tardás 2 horas en contestar precio, ya compraron en otro lado.',
+        ctaBox: { interactivePoll: { question: '¿TE PASA EN TU NEGOCIO?', opt1: 'Muchísimo', opt2: 'A veces' } },
+        swipeText: 'TOCÁ PARA SEGUIR →',
+      },
+      {
+        bgImage: 'about.jpg',
+        eyebrow: 'El Cuello de Botella',
+        headlineLines: ['Tu equipo no da', 'abasto con las', '[mismas] preguntas'],
+        headlineSize: 72,
+        bullets: [
+          { iconType: 'cross', title: '“Hola, ¿precio?” a las 23:00 hs', subtitle: 'Nadie contesta y al otro día el cliente se enfrió.' },
+          { iconType: 'cross', title: 'Vendedores haciendo de secretarios', subtitle: 'Horas perdidas copiando y pegando precios y ubicación.' },
+          { iconType: 'cross', title: 'Cero seguimiento a interesados', subtitle: 'Decenas de chats abiertos sin volver a contactar.' },
+        ],
+        swipeText: 'LA SOLUCIÓN →',
+      },
+      {
+        bgImage: 'hero.jpg',
+        eyebrow: 'Agentes de IA 24/7',
+        headlineLines: ['Un asistente de [IA]', 'que atiende y', '{vende} por vos'],
+        headlineSize: 72,
+        bullets: [
+          { iconType: 'check', title: 'Responde en 3 segundos por WhatsApp', subtitle: 'Conoce tu catálogo, stock y políticas.' },
+          { iconType: 'check', title: 'Entiende audios y preguntas complejas', subtitle: 'Habla natural como tu mejor vendedor.' },
+          { iconType: 'check', title: 'Agenda turnos y califica clientes', subtitle: 'Pasa a tu equipo solo ventas listas para cobrar.' },
+        ],
+        swipeText: 'PROBALO AHORA →',
+      },
+      {
+        bgImage: 'og-bg.jpg',
+        eyebrow: 'Lead Magnet Gratuito',
+        headlineLines: ['Probá cómo', 'atendería la [IA]', 'en tu rubro'],
+        headlineSize: 76,
+        subtext: 'Armamos una demo interactiva personalizada para tu empresa y auditamos tu WhatsApp sin costo.',
+        ctaBox: {
+          kicker: 'Lead Magnet · Acceso Exclusivo',
+          title: 'Respondé {“IA”} a esta Story',
+          subtitle: 'Y te mandamos por mensaje privado el acceso en vivo.',
+          button: 'ENVIÁ "IA" POR MENSAJE PRIVADO',
+        },
+        swipeText: '@SOLUWEB · LINK EN BIO',
+      },
+    ],
+  },
+  {
+    folder: '07-historias-carrusel-crm-embudo',
+    title: 'Carrusel Stories 02 — De Excel a un CRM que vende solo',
+    slides: [
+      {
+        bgImage: 'svc-crm.jpg',
+        eyebrow: 'Ventas & Gestión',
+        headlineLines: ['Tu negocio no', 'tiene falta de clientes.', 'Tiene [fugas].'],
+        headlineSize: 74,
+        subtext: 'Invertís en anuncios pero a fin de mes no sabés cuántos presupuestos quedaron en la nada.',
+        ctaBox: { interactivePoll: { question: '¿DÓNDE ANOTÁS TUS LEADS?', opt1: 'En Excel', opt2: 'En WhatsApp' } },
+        swipeText: 'MIRÁ LAS FUGAS →',
+      },
+      {
+        bgImage: 'svc-gestion.jpg',
+        eyebrow: 'Dónde se pierde la plata',
+        headlineLines: ['El [60% de las ventas]', 'se cierran en el', '{seguimiento}'],
+        headlineSize: 72,
+        bullets: [
+          { iconType: 'cross', title: 'Presupuestos enviados sin respuesta', subtitle: 'Nadie vuelve a llamar ni escribir.' },
+          { iconType: 'cross', title: 'Clientes en WhatsApps de empleados', subtitle: 'Si se van, se llevan tu base de contactos.' },
+          { iconType: 'cross', title: 'Horas pasando datos a mano', subtitle: 'Errores constantes de stock y precios.' },
+        ],
+        swipeText: 'EL CAMBIO →',
+      },
+      {
+        bgImage: 'svc-integraciones.jpg',
+        eyebrow: 'CRM a Medida',
+        headlineLines: ['Un sistema donde', '[nada] se te escapa', 'nunca más'],
+        headlineSize: 74,
+        bullets: [
+          { iconType: 'check', title: 'Tablero visual de ventas en tiempo real', subtitle: 'Sabés qué falta cobrar y qué cerrar hoy.' },
+          { iconType: 'check', title: 'Seguimientos automáticos programados', subtitle: 'El sistema recuerda y contacta en el momento justo.' },
+          { iconType: 'check', title: 'Stock, facturación y turnos conectados', subtitle: 'Todo en un solo panel en la nube.' },
+        ],
+        swipeText: 'RECURSO GRATIS →',
+      },
+      {
+        bgImage: 'og-bg.jpg',
+        eyebrow: 'Plantilla Gratuita',
+        headlineLines: ['Descargá el [Mapa]', 'de Embudo y', 'Seguimiento PyME'],
+        headlineSize: 74,
+        subtext: 'La estructura exacta para duplicar cierres comerciales sin sumar empleados.',
+        ctaBox: {
+          kicker: 'Lead Magnet · Recurso Descargable',
+          title: 'Respondé {“CRM”} a esta Story',
+          subtitle: 'Te lo enviamos por DM con un diagnóstico de regalo.',
+          button: 'ENVIÁ "CRM" POR MENSAJE PRIVADO',
+        },
+        swipeText: '@SOLUWEB · LINK EN BIO',
+      },
+    ],
+  },
+  {
+    folder: '08-historias-carrusel-5-automatizaciones',
+    title: 'Carrusel Stories 03 — 5 Automatizaciones que ahorran 20 h/semana',
+    slides: [
+      {
+        bgImage: 'svc-automatizacion.jpg',
+        eyebrow: 'Productividad',
+        headlineLines: ['5 tareas manuales', 'que tu empresa', 'debería [automatizar]'],
+        headlineSize: 74,
+        subtext: 'Si repetís el mismo clic todos los días, estás pagando horas de sueldo para hacer trabajo de robot.',
+        ctaBox: { interactivePoll: { question: '¿AUTOMATIZÁS TUS TAREAS?', opt1: 'Todo a mano', opt2: 'Muy poco' } },
+        swipeText: 'VER AUTOMATIZACIONES →',
+      },
+      {
+        bgImage: 'svc-ia.jpg',
+        eyebrow: 'Automatización 1 y 2',
+        headlineLines: ['[Leads] inmediatos', 'y agenda de turnos', 'sin mover un dedo'],
+        headlineSize: 72,
+        bullets: [
+          { iconType: 'check', title: '1. De Anuncio a WhatsApp en 5 segundos', subtitle: 'Apenas consultan reciben saludo y propuesta.' },
+          { iconType: 'check', title: '2. Recordatorio automático de citas', subtitle: 'Avisos 24 h y 2 h antes: chau ausentismo.' },
+        ],
+        swipeText: 'SIGUIENTES →',
+      },
+      {
+        bgImage: 'svc-gestion.jpg',
+        eyebrow: 'Automatización 3 y 4',
+        headlineLines: ['Presupuestos en PDF', 'y [facturación]', 'electrónica directa'],
+        headlineSize: 72,
+        bullets: [
+          { iconType: 'check', title: '3. Presupuesto generado al instante', subtitle: 'Con link de pago de Mercado Pago integrado.' },
+          { iconType: 'check', title: '4. Stock y factura ARCA/AFIP al unísono', subtitle: 'Se cobra y se emite la factura en 4 segundos.' },
+        ],
+        swipeText: 'LA #5 ES CLAVE →',
+      },
+      {
+        bgImage: 'svc-integraciones.jpg',
+        eyebrow: 'Automatización 5',
+        headlineLines: ['Reportes en tu', 'celular cada', '{lunes a las 8 AM}'],
+        headlineSize: 74,
+        subtext: 'Ventas, cobranzas pendientes y consultas recibidas en un solo mensaje de WhatsApp sin abrir mil pestañas.',
+        bullets: [
+          { iconType: 'check', title: 'Conectamos todo con n8n, Make e IA', subtitle: 'Tus sistemas actuales hablando entre sí.' },
+        ],
+        swipeText: 'LEAD MAGNET →',
+      },
+      {
+        bgImage: 'og-bg.jpg',
+        eyebrow: 'Checklist Gratuito',
+        headlineLines: ['Checklist de 15', '[Automatizaciones]', 'para PyMEs'],
+        headlineSize: 74,
+        subtext: 'Descubrí exactamente qué procesos podés delegarle a la tecnología este mes.',
+        ctaBox: {
+          kicker: 'Lead Magnet · Auditoría Bonificada',
+          title: 'Respondé {“AUTO”} a esta Story',
+          subtitle: 'Te mandamos el PDF completo + sesión de diagnóstico.',
+          button: 'ENVIÁ "AUTO" POR MENSAJE PRIVADO',
+        },
+        swipeText: '@SOLUWEB · LINK EN BIO',
+      },
+    ],
+  },
+];
+
 // Ejecución
 mkdirSync(smDir, { recursive: true });
 
@@ -678,6 +867,26 @@ for (const r of REELS_COVERS) {
     ...r,
   });
   console.log(`✓ 05-reels-y-stories/${r.file}`);
+}
+
+// Carruseles en Formato Historias (9:16 - 1080x1920)
+for (const sc of STORY_CAROUSELS) {
+  const dir = join(smDir, sc.folder);
+  mkdirSync(dir, { recursive: true });
+  const total = sc.slides.length;
+  for (let i = 0; i < total; i++) {
+    const s = sc.slides[i];
+    const outPath = join(dir, `story-0${i + 1}.png`);
+    await buildSlide({
+      outPath,
+      width: 1080,
+      height: 1920,
+      slideNum: i + 1,
+      totalSlides: total,
+      ...s,
+    });
+  }
+  console.log(`✓ ${sc.folder} (${total} stories 9:16 generadas)`);
 }
 
 console.log('Todas las piezas de Social Media fueron generadas con éxito.');

@@ -10,12 +10,15 @@ Cada pieza está diseñada bajo la metodología **PAS (Problema → Agitación �
 
 ```text
 social-media/
-├── 01-carrusel-whatsapp-ventas/      # 6 slides (1080x1350 - 4:5) | Palabra clave: "IA"
-├── 02-carrusel-caos-excel-crm/       # 5 slides (1080x1350 - 4:5) | Palabra clave: "CRM"
-├── 03-carrusel-5-automatizaciones/   # 5 slides (1080x1350 - 4:5) | Palabra clave: "AUTO"
-├── 04-posts-individuales/            # 3 posts (1080x1350 - 4:5)  | Palabras clave: "PILOTO", "SISTEMA", "DIAGNOSTICO"
-├── 05-reels-y-stories/               # 3 portadas/stories (1080x1920 - 9:16) + Guiones completos
-└── PLAN-CONTENIDO-Y-COPYS.md         # Este documento con todos los textos listos para copiar y pegar
+├── 01-carrusel-whatsapp-ventas/              # 6 slides (1080x1350 - 4:5) | Lead Magnet: "IA"
+├── 02-carrusel-caos-excel-crm/               # 5 slides (1080x1350 - 4:5) | Lead Magnet: "CRM"
+├── 03-carrusel-5-automatizaciones/           # 5 slides (1080x1350 - 4:5) | Lead Magnet: "AUTO"
+├── 04-posts-individuales/                    # 3 posts (1080x1350 - 4:5)  | Palabras clave: "PILOTO", "SISTEMA", "DIAGNOSTICO"
+├── 05-reels-y-stories/                       # 3 portadas/stories (1080x1920 - 9:16) + Guiones completos
+├── 06-historias-carrusel-whatsapp-ia/        # 4 stories (1080x1920 - 9:16) | Lead Magnet Stories: "IA"
+├── 07-historias-carrusel-crm-embudo/         # 4 stories (1080x1920 - 9:16) | Lead Magnet Stories: "CRM"
+├── 08-historias-carrusel-5-automatizaciones/ # 5 stories (1080x1920 - 9:16) | Lead Magnet Stories: "AUTO"
+└── PLAN-CONTENIDO-Y-COPYS.md                 # Este documento con todos los textos listos para copiar y pegar
 ```
 
 ---
@@ -162,3 +165,67 @@ Ubicadas en `social-media/05-reels-y-stories/`:
   - **[0-3s · Gancho]:** "Esta automatización le ahorra 20 horas por semana a cualquier PyME."
   - **[3-20s · Demostración]:** "Antes: entraba un pedido, alguien copiaba los datos a un Excel, descontaba el stock a mano, armaba la factura en AFIP y mandaba el comprobante por WhatsApp. Ahora: todo eso ocurre solo en 4 segundos apenas se acredita el pago, y a vos te llega una alerta al celular."
   - **[20-30s · CTA]:** "Comentá **AUTO** y te envío gratis el Checklist con las 15 tareas que podés automatizar este mes con Soluweb."
+
+---
+
+## 4. CARRUSELES EN FORMATO HISTORIAS DE INSTAGRAM (Vertical 9:16 — `1080x1920 px`)
+
+Diseñados como secuencias narrativas de 4 a 5 historias continuas (tap forward) con zonas optimizadas para stickers interactivos de Instagram (Encuesta, Deslizador o Respuesta a la Story por DM).
+
+> [!NOTE]
+> Todos los copys para acompañar las historias son ultra cortos (**menos de 150 caracteres**) ideales para no tapar los elementos visuales y disparar interacciones directas.
+
+---
+
+### Secuencia Stories 01: El bot de WhatsApp que sí vende (IA 24/7)
+- **Carpeta:** `social-media/06-historias-carrusel-whatsapp-ia/` (`story-01.png` a `story-04.png`)
+- **Mecánica:** Encuesta inicial + Demostración del dolor + Presentación IA + Cierre DM con palabra clave `IA`.
+
+1. **Story 01 (Hook):** `story-01.png`
+   - **Copy (<150 car):** *¿Cuántas ventas se te escapan por contestar 2 horas tarde? Votá acá abajo 👇*
+   - **Sticker sugerido:** Encuesta sobre la caja inferior: `[Muchísimo] / [A veces]`.
+2. **Story 02 (Agitación):** `story-02.png`
+   - **Copy (<150 car):** *Poner a tus mejores vendedores a responder "¿precio?" todo el día es tirar plata a la basura.*
+   - **Sticker sugerido:** Deslizador de fuego 🔥 o sticker de "¿Te pasa?".
+3. **Story 03 (Solución):** `story-03.png`
+   - **Copy (<150 car):** *Un Agente de IA entrenado con tu negocio: responde en 3 seg, entiende audios y agenda solo 24/7.*
+4. **Story 04 (Lead Magnet / CTA):** `story-04.png`
+   - **Copy (<150 car):** *Respondé "IA" a esta historia y te mandamos una demo interactiva para tu rubro sin cargo 🚀*
+   - **Acción esperada:** Mensaje directo con la palabra `IA`.
+
+---
+
+### Secuencia Stories 02: De Excel a un CRM que vende solo
+- **Carpeta:** `social-media/07-historias-carrusel-crm-embudo/` (`story-01.png` a `story-04.png`)
+- **Mecánica:** Encuesta de leads + Fugas del seguimiento + Solución CRM + Cierre DM con palabra clave `CRM`.
+
+1. **Story 01 (Hook):** `story-01.png`
+   - **Copy (<150 car):** *Invertís en anuncios pero no sabés qué presupuestos quedaron colgados? Votá:*
+   - **Sticker sugerido:** Encuesta: `[En Excel 📊] / [En WhatsApp 💬]`.
+2. **Story 02 (Agitación):** `story-02.png`
+   - **Copy (<150 car):** *El 60% de los cierres se dan en el 2.° o 3.er contacto. Si dependés de la memoria, perdés clientes.*
+3. **Story 03 (Solución):** `story-03.png`
+   - **Copy (<150 car):** *CRM a medida: embudo en vivo, recordatorios automáticos por WhatsApp y stock conectado.*
+4. **Story 04 (Lead Magnet / CTA):** `story-04.png`
+   - **Copy (<150 car):** *Respondé "CRM" a esta story y te enviamos gratis el Mapa de Embudo Comercial para PyMEs 📈*
+   - **Acción esperada:** Mensaje directo con la palabra `CRM`.
+
+---
+
+### Secuencia Stories 03: 5 Automatizaciones que ahorran 20 h/semana
+- **Carpeta:** `social-media/08-historias-carrusel-5-automatizaciones/` (`story-01.png` a `story-05.png`)
+- **Mecánica:** Tap secuencial paso a paso + Cierre DM con palabra clave `AUTO`.
+
+1. **Story 01 (Hook):** `story-01.png`
+   - **Copy (<150 car):** *5 tareas manuales que tu empresa debería delegarle a la tecnología hoy mismo 👇*
+   - **Sticker sugerido:** Encuesta: `[Todo a mano 😫] / [Muy poco ⚙️]`.
+2. **Story 02 (Auto 1 & 2):** `story-02.png`
+   - **Copy (<150 car):** *De anuncio a WhatsApp en 5 segundos + recordatorio automático de citas (chau ausentismo).*
+3. **Story 03 (Auto 3 & 4):** `story-03.png`
+   - **Copy (<150 car):** *Presupuesto en PDF al instante con link de pago + facturación ARCA/AFIP automática.*
+4. **Story 04 (Auto 5):** `story-04.png`
+   - **Copy (<150 car):** *Reporte ejecutivo a tu WhatsApp cada lunes a las 8 AM sin tocar una sola planilla.*
+5. **Story 05 (Lead Magnet / CTA):** `story-05.png`
+   - **Copy (<150 car):** *Respondé "AUTO" y te mandamos el Checklist con 15 procesos listos para automatizar gratis ⚡*
+   - **Acción esperada:** Mensaje directo con la palabra `AUTO`.
+
