@@ -21,6 +21,7 @@ export const waLink = (text = 'Hola Soluweb! Quiero automatizar mi negocio.') =>
 
 export const NAV = [
   { label: 'Servicios', href: '/#servicios' },
+  { label: 'Resultados', href: '/#resultados' },
   { label: 'Soluciones', href: '/#soluciones' },
   { label: 'Proceso', href: '/#proceso' },
   { label: 'Nosotros', href: '/#nosotros' },
@@ -31,6 +32,8 @@ export type Service = {
   id: string;
   title: string;
   short: string;
+  needTag: string;
+  impactMetric: string;
   description: string;
   bullets: string[];
   image: string;
@@ -41,14 +44,16 @@ export const SERVICES: Service[] = [
   {
     id: 'ia',
     title: 'IA para tu negocio',
-    short: 'Chatbots, agentes y asistentes',
+    short: 'Chatbots, agentes y asistentes 24/7',
+    needTag: 'Evitá perder ventas fuera de horario',
+    impactMetric: 'Responde en 2 seg · +64% cierres',
     description:
-      'Asistentes inteligentes que atienden, venden y responden 24/7 en WhatsApp, Instagram y tu web, entrenados con la información de tu empresa.',
+      'Asistentes inteligentes que escuchan audios, cotizan, califican y agendan turnos 24/7 en WhatsApp, Instagram y tu web, entrenados con los datos reales de tu empresa.',
     bullets: [
-      'Chatbots y agentes de IA para WhatsApp e Instagram',
-      'Asistentes internos entrenados con tus documentos',
-      'Calificación automática de leads y turnos',
-      'Análisis de datos y reportes con IA',
+      'Agentes de IA para WhatsApp e Instagram (texto y audio)',
+      'Asistentes internos entrenados con tu catálogo y precios',
+      'Calificación automática de leads y agenda en Google Calendar',
+      'Derivación inteligente a vendedor humano cuando está listo',
     ],
     image: 'svc-ia',
     featured: true,
@@ -56,14 +61,16 @@ export const SERVICES: Service[] = [
   {
     id: 'automatizacion',
     title: 'Automatización de procesos',
-    short: 'n8n · Make · Zapier',
+    short: 'n8n · Make · Zapier · Cero carga manual',
+    needTag: 'Chau a copiar y pegar entre planillas',
+    impactMetric: '-20 hs/semana de tareas mecánicas',
     description:
-      'Eliminamos las tareas repetitivas: cargas manuales, mails, seguimientos y reportes pasan a funcionar solos, sin errores.',
+      'Eliminamos las tareas repetitivas: cuando entra una venta o pago, el sistema emite la factura ARCA, descuenta stock y envía el comprobante por WhatsApp solo.',
     bullets: [
-      'Flujos con n8n, Make y Zapier',
-      'Seguimiento automático de clientes y cobranzas',
-      'Reportes y alertas en tiempo real',
-      'Integración entre planillas, mail y sistemas',
+      'Flujos automáticos con n8n, Make y APIs oficiales',
+      'Facturación electrónica ARCA/AFIP y envío de comprobantes',
+      'Seguimiento automático de cobranzas y vencimientos',
+      'Alertas y reportes diarios en el WhatsApp del dueño',
     ],
     image: 'svc-automatizacion',
     featured: true,
@@ -71,56 +78,64 @@ export const SERVICES: Service[] = [
   {
     id: 'crm',
     title: 'CRM y gestión de clientes',
-    short: 'Ventas ordenadas y medibles',
+    short: 'Embudo comercial y seguimiento activo',
+    needTag: 'Que ningún presupuesto quede olvidado',
+    impactMetric: '+42% conversión en seguimiento',
     description:
-      'Implementamos y personalizamos tu CRM para que ningún cliente se pierda: embudo de ventas, historial, tareas y métricas en un solo lugar.',
+      'Centralizamos todas las consultas de WhatsApp, Instagram y web en un embudo visual para que tu equipo comercial sepa a quién llamar hoy y cuánto dinero hay en juego.',
     bullets: [
-      'Implementación de HubSpot, Odoo, Kommo y más',
-      'Embudos de venta y pipelines a medida',
-      'Migración de contactos y datos',
-      'Capacitación a tu equipo comercial',
+      'Implementación de CRM a medida, Kommo, HubSpot u Odoo',
+      'Recordatorios automáticos de presupuestos sin responder',
+      'Historial unificado de chats, llamadas y cotizaciones',
+      'Métricas de cierre por vendedor y canal en tiempo real',
     ],
     image: 'svc-crm',
   },
   {
     id: 'gestion',
     title: 'Sistemas de gestión a medida',
-    short: 'ERP · stock · turnos · facturación',
+    short: 'ERP · Stock · Turnos · Facturación ARCA',
+    needTag: 'Todo tu negocio en un solo panel',
+    impactMetric: '100% adaptado a tu operación',
     description:
-      'Desarrollamos el sistema que tu negocio necesita: control de stock, turnos, facturación electrónica, sueldos y paneles de control.',
+      'Desarrollamos el software exacto que tu empresa necesita: control de stock multi-sucursal, caja diaria, cuentas corrientes, turnos y facturación electrónica.',
     bullets: [
-      'ERP y sistemas administrativos',
-      'Gestión de stock, pedidos y proveedores',
-      'Turnos y agenda online',
-      'Facturación electrónica (ARCA/AFIP)',
+      'ERP web y móvil sin pagar licencias en dólares por usuario',
+      'Control de stock, depósito, pedidos y alertas de reposición',
+      'Facturación electrónica integrada con ARCA / AFIP',
+      'Permisos por rol para empleados, encargados y socios',
     ],
     image: 'svc-gestion',
   },
   {
     id: 'integraciones',
     title: 'Integraciones y APIs',
-    short: 'Todo conectado',
+    short: 'Tus herramientas hablando entre sí',
+    needTag: 'Uní tus sistemas sin cambiar todo',
+    impactMetric: 'Sincronización en tiempo real',
     description:
-      'Conectamos tus herramientas entre sí: tienda online, CRM, Mercado Pago, Google Workspace, WhatsApp y sistemas propios.',
+      'Conectamos las plataformas que ya usás para que funcionen como un único ecosistema: tienda online, Mercado Pago, bancos, WhatsApp, CRM y tu ERP.',
     bullets: [
-      'APIs a medida y webhooks',
-      'Mercado Pago, Tienda Nube, WooCommerce',
-      'Google Workspace y Microsoft 365',
-      'WhatsApp Business API',
+      'Integración con Mercado Pago, Tienda Nube y WooCommerce',
+      'Conciliación automática de pagos y transferencias',
+      'Conexión con WhatsApp Cloud API y Google Workspace',
+      'Webhooks y APIs privadas de alta disponibilidad',
     ],
     image: 'svc-integraciones',
   },
   {
     id: 'web',
-    title: 'Webs y tiendas online',
-    short: 'Nuestra base, ahora inteligente',
+    title: 'Webs y tiendas online con IA',
+    short: 'Diseñadas para convertir visitas en clientes',
+    needTag: 'Tu vidriera vendiendo las 24 horas',
+    impactMetric: 'Carga < 0.8s + Asistente IA activo',
     description:
-      'Seguimos haciendo sitios, landing pages y e-commerce, ahora conectados a tu CRM y tus automatizaciones desde el primer día.',
+      'Sitios corporativos, landing pages y e-commerce de alto impacto visual, conectados desde el día uno a tu asistente de IA, pasarela de pagos y CRM.',
     bullets: [
-      'Sitios web y landing pages que convierten',
-      'Tiendas online integradas',
-      'Diseño UX/UI',
-      'SEO y analítica',
+      'Landing pages y e-commerce optimizados para conversión',
+      'Widget de asistente IA integrado para cerrar ventas en vivo',
+      'Catálogo y stock sincronizado con tu sistema central',
+      'SEO técnico, velocidad extrema y analítica de anuncios',
     ],
     image: 'svc-web',
   },
@@ -146,77 +161,93 @@ export const TOOLS = [
 ];
 
 export const PAINS = [
-  { title: 'Respondés los mismos mensajes todo el día', fix: 'Un asistente de IA contesta, califica y agenda por vos.' },
-  { title: 'Los datos están en mil planillas', fix: 'Un sistema central con toda la info, accesible desde cualquier lugar.' },
-  { title: 'Se te escapan clientes sin seguimiento', fix: 'Un CRM que avisa, recuerda y hace el seguimiento automático.' },
-  { title: 'Cargás lo mismo en varios sistemas', fix: 'Integraciones que mueven los datos solas, sin errores.' },
+  {
+    beforeBadge: 'Domingo 23:30 hs',
+    title: 'Respondés tarde o repetís los mismos mensajes todo el día',
+    fix: 'Un Agente de IA contesta audio y texto en 2 segundos, cotiza y agenda turnos 24/7.',
+  },
+  {
+    beforeBadge: 'Caos operativo',
+    title: 'Tus datos están dispersos en 10 planillas de Excel y cuadernos',
+    fix: 'Un panel central donde ventas, stock, caja y facturación ARCA se actualizan solos.',
+  },
+  {
+    beforeBadge: 'Ventas perdidas',
+    title: 'Envían presupuestos y nadie les hace seguimiento a tiempo',
+    fix: 'Un CRM inteligente que avisa a tu equipo y reactiva clientes indecisos automáticamente.',
+  },
+  {
+    beforeBadge: 'Doble trabajo',
+    title: 'Tu equipo carga el mismo pedido en 3 lugares distintos',
+    fix: 'Automatizaciones que conectan WhatsApp, Mercado Pago, stock y facturación sin errores.',
+  },
 ];
 
 export const INDUSTRIES = [
   {
-    name: 'Comercios y e-commerce',
-    items: ['Atención de consultas 24/7 por WhatsApp', 'Stock sincronizado entre local y tienda online', 'Recuperación de carritos abandonados'],
+    name: 'Comercios y distribuidoras',
+    items: ['Pedidos y cotizaciones 24/7 por WhatsApp IA', 'Stock sincronizado entre depósito, local y web', 'Facturación ARCA y envío de comprobante automático'],
   },
   {
-    name: 'Salud y consultorios',
-    items: ['Turnos online con recordatorios automáticos', 'Fichas de pacientes centralizadas', 'Confirmaciones y reprogramaciones por WhatsApp'],
+    name: 'Salud, clínicas y estética',
+    items: ['Agenda de turnos por WhatsApp con IA', 'Recordatorios 24h antes (-80% ausentismo)', 'Historia clínica y caja diaria centralizada'],
   },
   {
-    name: 'Inmobiliarias',
-    items: ['Calificación de interesados con IA', 'CRM de propiedades y clientes', 'Envío automático de fichas y visitas'],
+    name: 'Inmobiliarias y desarrolladoras',
+    items: ['Calificación automática de leads por presupuesto y zona', 'CRM de propiedades con alertas a vendedores', 'Envío instantáneo de fichas y agendado de visitas'],
   },
   {
-    name: 'Educación',
-    items: ['Inscripciones y cobros automatizados', 'Asistente para alumnos con IA', 'Seguimiento de cuotas y asistencia'],
+    name: 'Educación e institutos',
+    items: ['Inscripciones y cobro de matrículas automatizado', 'Asistente IA para responder dudas de alumnos 24/7', 'Control de cuotas, vencimientos y certificados'],
   },
   {
-    name: 'Servicios profesionales',
-    items: ['Presupuestos y contratos automáticos', 'Gestión de clientes y tareas', 'Facturación y cobranza recurrente'],
+    name: 'Estudios y servicios profesionales',
+    items: ['Recepción y lectura automática de comprobantes', 'Seguimiento de presupuestos y abonos mensuales', 'Reportes automáticos por WhatsApp a tus clientes'],
   },
   {
-    name: 'Gastronomía',
-    items: ['Pedidos y reservas por WhatsApp', 'Control de stock e insumos', 'Fidelización y campañas automáticas'],
+    name: 'Gastronomía y franquicias',
+    items: ['Toma de pedidos y reservas sin demoras', 'Control de stock crítico de insumos y proveedores', 'Reactivación automática de clientes frecuentes'],
   },
 ];
 
 export const PROCESS = [
-  { step: '01', title: 'Diagnóstico', text: 'Analizamos tus procesos y detectamos dónde se pierde tiempo y dinero. Sin costo.' },
-  { step: '02', title: 'Propuesta', text: 'Diseñamos la solución y te mostramos el plan, los plazos y el retorno esperado.' },
-  { step: '03', title: 'Implementación', text: 'Construimos, integramos y probamos con tus datos reales, por etapas.' },
-  { step: '04', title: 'Capacitación', text: 'Tu equipo aprende a usarlo. Documentación clara y acompañamiento.' },
-  { step: '05', title: 'Mejora continua', text: 'Medimos resultados, ajustamos y escalamos lo que funciona.' },
+  { step: '01', title: 'Diagnóstico', text: 'Relevamos tu operación en 20 minutos y detectamos los cuellos de botella. Sin costo.' },
+  { step: '02', title: 'Arquitectura', text: 'Diseñamos el flujo exacto (IA, CRM o sistema) con plazos cerrados y retorno medible.' },
+  { step: '03', title: 'Implementación', text: 'Construimos, entrenamos la IA con tus datos reales y conectamos tus canales.' },
+  { step: '04', title: 'Capacitación', text: 'Dejamos a tu equipo dominando la herramienta con tutoriales y soporte directo.' },
+  { step: '05', title: 'Escala continua', text: 'Medimos conversiones y horas ahorradas para seguir automatizando nuevas áreas.' },
 ];
 
 export const BENEFITS = [
-  { value: '24/7', label: 'Atención automática a tus clientes' },
-  { value: '-80%', label: 'de tareas manuales repetitivas*' },
-  { value: '1', label: 'Lugar para todos tus datos' },
-  { value: '100%', label: 'Soluciones a medida, sin plantillas' },
+  { value: '2 seg', label: 'Tiempo de respuesta en WhatsApp 24/7' },
+  { value: '-80%', label: 'Tareas manuales repetitivas en tu equipo*' },
+  { value: '+64%', label: 'Más cierres al no enfriarse las consultas' },
+  { value: '100%', label: 'A medida de la realidad de tu negocio' },
 ];
 
 export const FAQS = [
   {
     q: '¿Necesito saber de tecnología para usar las soluciones?',
-    a: 'No. Diseñamos todo para que sea simple de usar y capacitamos a tu equipo. Vos te enfocás en tu negocio.',
+    a: 'No. Diseñamos interfaces súper claras y dejamos todo funcionando en el WhatsApp y celular que ya usás todos los días. Además capacitamos a tu equipo paso a paso.',
   },
   {
     q: '¿Cuánto tarda una implementación?',
-    a: 'Una automatización o chatbot puede estar funcionando en 1 a 3 semanas. Un sistema de gestión a medida, entre 1 y 3 meses según su alcance. Trabajamos por etapas para que veas resultados rápido.',
+    a: 'Un agente de IA para WhatsApp o flujo de automatización está operativo en 1 a 2 semanas. Un sistema de gestión ERP a medida se entrega por etapas funcionales entre 3 y 8 semanas.',
   },
   {
     q: '¿Tengo que cambiar las herramientas que ya uso?',
-    a: 'No necesariamente. Muchas veces conectamos y automatizamos lo que ya tenés (planillas, tu tienda, tu sistema de facturación). Solo proponemos cambios si suman.',
+    a: 'No necesariamente. Conectamos y potenciamos lo que ya usás (planillas de Google, Mercado Pago, Tienda Nube, ARCA/AFIP, WhatsApp) y solo reemplazamos lo que te está frenando.',
   },
   {
-    q: '¿La IA reemplaza a mi equipo?',
-    a: 'La IA se encarga de lo repetitivo para que tu equipo se dedique a lo que genera valor: vender, atender casos complejos y crecer.',
+    q: '¿El chatbot de IA suena como un robot frío?',
+    a: 'Todo lo contrario: entrenamos a tu Agente IA con el tono de tu marca, tus precios reales, entiende audios de WhatsApp y sabe cuándo derivar la charla a un vendedor humano.',
   },
   {
-    q: '¿Mis datos están seguros?',
-    a: 'Sí. Trabajamos con proveedores líderes, accesos con permisos, copias de seguridad y buenas prácticas de privacidad. Los datos son siempre tuyos.',
+    q: '¿Mis datos y los de mis clientes están seguros?',
+    a: 'Sí. Utilizamos infraestructura oficial en la nube con encriptación, backups automáticos diarios y permisos por rol. Toda la base de datos e historial es 100% propiedad de tu empresa.',
   },
   {
-    q: '¿Cómo se cobra?',
-    a: 'Por proyecto con precio cerrado y, si lo necesitás, un abono mensual de soporte y mejoras. El diagnóstico inicial es sin cargo.',
+    q: '¿Cómo empezamos y cómo se presupuesta?',
+    a: 'Empezamos con una sesión de diagnóstico gratuita por WhatsApp o Meet. Te entregamos una propuesta cerrada por proyecto (sin sorpresas ni licencias ocultas en dólares).',
   },
 ];

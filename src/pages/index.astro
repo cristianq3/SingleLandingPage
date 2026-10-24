@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import SocialProof from '../components/SocialProof.astro';
 import Contact from '../components/Contact.astro';
 import { img } from '../lib/images';
 import { SERVICES, TOOLS, PAINS, INDUSTRIES, PROCESS, BENEFITS, FAQS, waLink } from '../data/site';
@@ -21,12 +22,12 @@ const faqLd = {
 
   <!-- Herramientas -->
   <section aria-label="Tecnologías con las que trabajamos" class="border-y border-white/5 bg-ink-800/60 py-8">
-    <p class="mb-5 text-center text-xs font-semibold tracking-[0.2em] text-ink-400 uppercase">Trabajamos con las mejores herramientas</p>
+    <p class="mb-5 text-center text-xs font-semibold tracking-[0.2em] text-ink-400 uppercase">Conectamos las mejores tecnologías del mercado</p>
     <div class="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
       <ul class="flex w-max animate-marquee gap-10 hover:[animation-play-state:paused]">
         {
           [...TOOLS, ...TOOLS].map((t, i) => (
-            <li class="font-display text-lg font-bold whitespace-nowrap text-ink-400" aria-hidden={i >= TOOLS.length ? 'true' : undefined}>
+            <li class="font-display text-lg font-bold whitespace-nowrap text-ink-400 transition hover:text-white" aria-hidden={i >= TOOLS.length ? 'true' : undefined}>
               {t}
             </li>
           ))
@@ -35,56 +36,103 @@ const faqLd = {
     </div>
   </section>
 
-  <!-- Problema / solución -->
+  <!-- Problema / solución (Antes vs. Después) -->
   <section class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-    <div class="reveal max-w-2xl">
-      <span class="eyebrow">El problema</span>
-      <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">¿Tu equipo trabaja para los procesos, o los procesos trabajan para tu equipo?</h2>
-      <p class="mt-4 text-ink-300">Si te reconocés en alguno de estos puntos, hay horas (y ventas) que se están perdiendo todos los días.</p>
+    <div class="reveal flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+      <div class="max-w-2xl">
+        <span class="eyebrow">El cuello de botella</span>
+        <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">
+          ¿Tu equipo trabaja para los procesos, o los <span class="skew-tag">procesos</span> trabajan para tu equipo?
+        </h2>
+      </div>
+      <p class="max-w-md text-ink-300">
+        Si te reconocés en alguno de estos escenarios, hay horas de vida y ventas reales que se están escapando todas las semanas.
+      </p>
     </div>
-    <div class="mt-12 grid gap-4 md:grid-cols-2">
+
+    <div class="mt-12 grid gap-5 md:grid-cols-2">
       {
         PAINS.map((p) => (
-          <div class="card reveal group p-6 transition hover:border-brand/50">
-            <p class="flex items-start gap-3 text-lg font-semibold text-white">
-              <span class="mt-1 grid size-6 shrink-0 place-items-center rounded-full bg-red-500/15 text-xs text-red-400">✕</span>
+          <div class="card reveal group relative overflow-hidden p-6 transition duration-300 hover:-translate-y-1 hover:border-brand/50 sm:p-7">
+            <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-[11px] font-bold text-red-300 uppercase tracking-wider">
+              <span class="size-1.5 rounded-full bg-red-400"></span>
+              {p.beforeBadge}
+            </div>
+            <p class="flex items-start gap-3 text-lg font-bold text-white">
+              <span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-red-500/15 text-xs font-black text-red-400">✕</span>
               {p.title}
             </p>
-            <p class="mt-3 flex items-start gap-3 pl-0 text-ink-300">
-              <span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-brand/20 text-xs text-brand-300">✓</span>
-              {p.fix}
-            </p>
+            <div class="mt-4 rounded-2xl border border-brand/30 bg-brand/10 p-4 transition group-hover:border-brand/60 group-hover:bg-brand/15">
+              <p class="flex items-start gap-3 text-sm font-medium text-ink-100">
+                <span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-brand text-xs font-black text-spark">✓</span>
+                <span>
+                  <strong class="block text-xs font-extrabold tracking-wider text-spark uppercase mb-0.5">Con Soluweb en automático:</strong>
+                  {p.fix}
+                </span>
+              </p>
+            </div>
           </div>
         ))
       }
     </div>
   </section>
 
-  <!-- Servicios -->
+  <!-- Servicios con visuales específicos de cada necesidad -->
   <section id="servicios" class="relative py-24">
     <div class="absolute top-1/3 left-0 -z-10 h-96 w-96 rounded-full bg-brand/15 blur-[120px]"></div>
     <div class="mx-auto max-w-7xl px-5 lg:px-8">
-      <div class="reveal mx-auto max-w-2xl text-center">
-        <span class="eyebrow">Servicios</span>
-        <h2 class="mt-4 text-3xl font-extrabold sm:text-5xl">Todo lo que tu negocio necesita para <span class="text-gradient">escalar</span></h2>
-        <p class="mt-4 text-ink-300">Desde un chatbot hasta un sistema de gestión completo. Empezamos por lo que más impacto tiene.</p>
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <span class="eyebrow">Servicios y sistemas en acción</span>
+        <h2 class="mt-4 text-3xl font-extrabold sm:text-5xl">
+          Soluciones concretas para cada <span class="text-gradient">necesidad</span> de tu negocio
+        </h2>
+        <p class="mt-4 text-lg text-ink-300">
+          Mirás el problema, ves cómo funciona el sistema por dentro y medís el resultado desde el primer mes.
+        </p>
       </div>
 
-      <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {
           SERVICES.map((s) => {
             const pic = img(s.image);
             return (
-              <article id={s.id} class:list={['card reveal group flex flex-col overflow-hidden transition duration-300 hover:-translate-y-1 hover:border-brand/60', s.featured && 'lg:col-span-1']}>
-                <div class="relative aspect-[4/3] overflow-hidden bg-ink-700">
-                  {pic && <Image src={pic} alt={s.title} widths={[400, 700]} sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" class="size-full object-cover transition duration-500 group-hover:scale-105" />}
-                  {s.featured && <span class="skew-tag absolute top-4 left-5 text-xs font-bold tracking-wide uppercase">Destacado</span>}
+              <article
+                id={s.id}
+                class:list={[
+                  'card reveal group flex flex-col overflow-hidden transition duration-300 hover:-translate-y-2 hover:border-brand/60 hover:shadow-[0_25px_60px_-15px_rgba(15,51,255,0.35)]',
+                  s.featured && 'lg:col-span-1 border-brand/30',
+                ]}
+              >
+                {/* Imagen diseñada mostrando la necesidad y solución en interfaz real */}
+                <div class="relative aspect-[4/3] overflow-hidden border-b border-white/10 bg-ink-800">
+                  {pic && (
+                    <Image
+                      src={pic}
+                      alt={`${s.title} - ${s.needTag}`}
+                      widths={[480, 760, 900]}
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                      class="size-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                    />
+                  )}
+                  {s.featured && (
+                    <span class="skew-tag absolute top-3.5 left-4 text-[11px] font-extrabold tracking-wider uppercase shadow-lg">
+                      Más pedido
+                    </span>
+                  )}
+                  <span class="absolute right-3 bottom-3 rounded-full border border-spark/40 bg-ink-900/90 px-3 py-1 text-[11px] font-extrabold text-spark backdrop-blur">
+                    {s.impactMetric}
+                  </span>
                 </div>
+
                 <div class="flex flex-1 flex-col p-7">
-                  <p class="text-xs font-semibold tracking-wider text-brand-300 uppercase">{s.short}</p>
-                  <h3 class="mt-2 text-xl font-bold">{s.title}</h3>
+                  <div class="inline-flex w-fit items-center gap-1.5 rounded-md bg-brand/15 px-2.5 py-1 text-[11px] font-bold text-brand-200">
+                    <span class="size-1.5 rounded-full bg-spark"></span>
+                    {s.needTag}
+                  </div>
+                  <h3 class="mt-3 text-2xl font-extrabold text-white">{s.title}</h3>
+                  <p class="mt-1 text-xs font-semibold tracking-wider text-ink-400 uppercase">{s.short}</p>
                   <p class="mt-3 text-sm leading-relaxed text-ink-300">{s.description}</p>
-                  <ul class="mt-5 space-y-2 text-sm">
+                  <ul class="mt-5 space-y-2.5 text-sm">
                     {s.bullets.map((b) => (
                       <li class="flex gap-2.5 text-ink-200">
                         <span class="mt-1.5 h-2 w-3 shrink-0 -skew-x-12 bg-brand" />
@@ -92,8 +140,13 @@ const faqLd = {
                       </li>
                     ))}
                   </ul>
-                  <a href={waLink(`Hola Soluweb! Me interesa: ${s.title}.`)} target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-white hover:text-brand-300">
-                    Consultar
+                  <a
+                    href={waLink(`Hola Soluweb! Me interesa implementar: ${s.title}.`)}
+                    target="_blank"
+                    rel="noopener"
+                    class="mt-auto inline-flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 mt-6 text-sm font-bold text-white transition group-hover:border-brand group-hover:bg-brand"
+                  >
+                    <span>Pedir demo de este servicio</span>
                     <span aria-hidden="true" class="transition group-hover:translate-x-1">→</span>
                   </a>
                 </div>
@@ -107,7 +160,7 @@ const faqLd = {
 
   <!-- Beneficios -->
   <section class="mx-auto max-w-7xl px-5 lg:px-8">
-    <div class="reveal relative overflow-hidden rounded-[2rem] bg-brand px-8 py-14 sm:px-14">
+    <div class="reveal relative overflow-hidden rounded-[2rem] bg-brand px-8 py-14 shadow-[0_25px_70px_-15px_rgba(15,51,255,0.6)] sm:px-14">
       <div class="absolute -top-20 -right-10 h-72 w-72 skew-x-[-18deg] bg-white/10"></div>
       <div class="absolute -bottom-24 right-40 h-72 w-40 skew-x-[-18deg] bg-white/5"></div>
       <div class="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -115,34 +168,37 @@ const faqLd = {
           BENEFITS.map((b) => (
             <div>
               <p class="font-display text-5xl font-black text-white">{b.value}</p>
-              <p class="mt-2 text-sm text-brand-100">{b.label}</p>
+              <p class="mt-2 text-sm font-medium text-brand-100">{b.label}</p>
             </div>
           ))
         }
       </div>
-      <p class="relative mt-8 text-xs text-brand-200">* Valor de referencia en procesos automatizables. Cada caso se mide en el diagnóstico.</p>
+      <p class="relative mt-8 text-xs text-brand-200">* Valor de referencia en procesos automatizables. Cada caso se mide en el diagnóstico inicial sin cargo.</p>
     </div>
   </section>
+
+  <!-- NUEVA SECCIÓN: Capturas Flotantes de WhatsApp y Comentarios de Redes -->
+  <SocialProof />
 
   <!-- Soluciones por industria -->
   <section id="soluciones" class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
     <div class="reveal flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
       <div class="max-w-2xl">
-        <span class="eyebrow">Soluciones</span>
-        <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">Automatizaciones pensadas para tu rubro</h2>
+        <span class="eyebrow">Soluciones por rubro</span>
+        <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">Automatizaciones probadas en tu industria</h2>
       </div>
-      <p class="max-w-md text-ink-300">Algunos ejemplos de lo que implementamos. ¿Tu rubro no está? Lo diseñamos a medida.</p>
+      <p class="max-w-md text-ink-300">Ejemplos reales que implementamos todos los días. ¿Tu rubro tiene reglas propias? Lo armamos 100% a medida.</p>
     </div>
     <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {
         INDUSTRIES.map((ind, i) => (
-          <div class="card reveal p-7 transition hover:border-brand/50">
+          <div class="card reveal p-7 transition duration-300 hover:-translate-y-1 hover:border-brand/50">
             <span class="font-display text-sm font-black text-brand-400">{String(i + 1).padStart(2, '0')}</span>
             <h3 class="mt-2 text-lg font-bold">{ind.name}</h3>
             <ul class="mt-4 space-y-2.5 text-sm text-ink-300">
               {ind.items.map((it) => (
                 <li class="flex gap-2.5">
-                  <svg class="mt-0.5 size-4 shrink-0 text-brand-300" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z" /></svg>
+                  <svg class="mt-0.5 size-4 shrink-0 text-spark" viewBox="0 0 20 20" fill="currentColor"><path d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z" /></svg>
                   {it}
                 </li>
               ))}
@@ -160,12 +216,12 @@ const faqLd = {
     <div class="mx-auto max-w-7xl px-5 lg:px-8">
       <div class="reveal mx-auto max-w-2xl text-center">
         <span class="eyebrow">Cómo trabajamos</span>
-        <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">De la idea a los resultados, en 5 pasos</h2>
+        <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">De la idea al sistema funcionando, en 5 pasos</h2>
       </div>
       <ol class="mt-16 grid gap-5 md:grid-cols-5">
         {
           PROCESS.map((p) => (
-            <li class="card reveal relative p-6">
+            <li class="card reveal relative p-6 transition hover:-translate-y-1 hover:border-brand/50">
               <span class="skew-tag font-display text-sm font-black">{p.step}</span>
               <h3 class="mt-5 text-lg font-bold">{p.title}</h3>
               <p class="mt-2 text-sm leading-relaxed text-ink-300">{p.text}</p>
@@ -180,7 +236,23 @@ const faqLd = {
   <section id="nosotros" class="mx-auto grid max-w-7xl items-center gap-14 px-5 py-24 lg:grid-cols-2 lg:px-8">
     <div class="reveal relative">
       <div class="absolute -inset-4 -z-10 -skew-x-6 rounded-[2rem] bg-brand/20 blur-2xl"></div>
-      {about && <Image src={about} alt="Equipo de Soluweb trabajando con una interfaz de inteligencia artificial" widths={[600, 900]} sizes="(min-width:1024px) 50vw, 100vw" class="w-full rounded-[2rem] border border-white/10" />}
+      {about && (
+        <Image
+          src={about}
+          alt="Equipo de Soluweb desarrollando sistemas e inteligencia artificial para empresas"
+          widths={[600, 900]}
+          sizes="(min-width:1024px) 50vw, 100vw"
+          class="w-full rounded-[2rem] border border-white/10 shadow-2xl"
+        />
+      )}
+      <!-- Badge flotante sobre Nosotros -->
+      <div class="card absolute -bottom-5 right-4 hidden animate-float items-center gap-3 border-brand/40 bg-ink-900/95 px-4 py-3 shadow-2xl sm:flex">
+        <span class="grid size-9 place-items-center rounded-xl bg-brand font-display text-xs font-black text-white">AR</span>
+        <div>
+          <p class="text-xs font-bold text-white">Desde Tucumán para toda Argentina y LATAM</p>
+          <p class="text-[11px] text-emerald-400">Soporte directo por WhatsApp y Meet</p>
+        </div>
+      </div>
     </div>
     <div class="reveal">
       <span class="eyebrow">Nosotros</span>
@@ -188,20 +260,20 @@ const faqLd = {
       <div class="mt-6 space-y-4 text-ink-300">
         <p>
           Soluweb nació en Tucumán diseñando sitios web, apps y experiencias digitales para emprendedores y PyMEs. En ese camino vimos algo claro: el mayor
-          problema de nuestros clientes no era la web, era <strong class="text-white">el tiempo que perdían en tareas manuales</strong>.
+          problema de nuestros clientes no era la web, era <strong class="text-white">el tiempo y las ventas que perdían en tareas manuales</strong>.
         </p>
         <p>
-          Hoy combinamos esa experiencia en diseño y desarrollo con inteligencia artificial y automatización para construir soluciones simples, medibles y a
-          medida. Hablamos tu idioma, entendemos tu negocio y te acompañamos después de la entrega.
+          Hoy combinamos esa experiencia en diseño gráfico y desarrollo de software con inteligencia artificial y automatización para construir soluciones
+          simples, medibles y 100% a medida. Hablamos tu idioma, entendemos tu negocio y te acompañamos después de cada entrega.
         </p>
       </div>
       <ul class="mt-8 grid gap-4 sm:grid-cols-2">
         {
           [
-            ['Cercanía', 'Trato directo, sin intermediarios.'],
-            ['A medida', 'Nada de plantillas genéricas.'],
-            ['Resultados', 'Medimos el impacto real.'],
-            ['Acompañamiento', 'Soporte y mejora continua.'],
+            ['Trato directo', 'Hablás siempre con quienes construyen tu sistema.'],
+            ['100% a medida', 'El software se adapta a tu empresa, no al revés.'],
+            ['Retorno medible', 'Enfocados en que vendas más y ahorres horas.'],
+            ['Acompañamiento real', 'Soporte continuo y evolución paso a paso.'],
           ].map(([t, d]) => (
             <li class="border-l-2 border-brand pl-4">
               <p class="font-semibold text-white">{t}</p>
@@ -217,7 +289,7 @@ const faqLd = {
   <section id="faq" class="mx-auto max-w-3xl px-5 py-24 lg:px-8">
     <div class="reveal text-center">
       <span class="eyebrow">Preguntas frecuentes</span>
-      <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">Lo que todos nos preguntan</h2>
+      <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">Lo que todos nos preguntan antes de empezar</h2>
     </div>
     <div class="mt-12 space-y-3">
       {

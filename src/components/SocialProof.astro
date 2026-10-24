@@ -1,0 +1,379 @@
+---
+import { waLink } from '../data/site';
+
+const waCaptures = [
+  {
+    id: 'wa-1',
+    initials: 'MG',
+    avatarBg: 'bg-brand',
+    name: 'Martín Gómez · Distribuidora NOA',
+    status: 'en línea · Cliente desde hace 4 meses',
+    badge: '+$4.2M en ventas nocturnas',
+    floatClass: 'lg:-rotate-1 animate-float-slow',
+    reaction: '🔥 🙌',
+    messages: [
+      {
+        from: 'client',
+        type: 'audio',
+        duration: '0:28',
+        time: '09:14',
+        transcript: '“Cris! Te mando audio porque no lo puedo creer: ayer domingo el bot cerró 5 pedidos mayoristas solo...”',
+      },
+      {
+        from: 'client',
+        type: 'text',
+        text: 'Antes llegábamos el lunes con 60 mensajes sin responder y la mitad ya había comprado en otro lado. Ahora el bot les cotiza, les pasa el link de pago y carga la factura en ARCA.',
+        highlight: 'Recuperamos la inversión en los primeros 18 días 🚀',
+        time: '09:15',
+      },
+      {
+        from: 'soluweb',
+        type: 'text',
+        text: '¡Qué grande Martín! Acabo de ver el panel: 98% de respuestas en menos de 3 segundos este finde 💪',
+        time: '09:16',
+      },
+    ],
+  },
+  {
+    id: 'wa-2',
+    initials: 'VC',
+    avatarBg: 'bg-emerald-600',
+    name: 'Dra. Valeria Castro · Centro Médico',
+    status: 'en línea · Agente de Turnos IA',
+    badge: '-82% ausentismo de pacientes',
+    floatClass: 'lg:translate-y-4 lg:rotate-1 animate-float-reverse',
+    reaction: '❤️ 👏',
+    messages: [
+      {
+        from: 'client',
+        type: 'text',
+        text: 'Hola equipo Soluweb!! Les quería mostrar cómo cerró la agenda de esta semana en los 6 consultorios:',
+        time: '18:42',
+      },
+      {
+        from: 'client',
+        type: 'metric',
+        metricTitle: 'Reporte Automático Semanal',
+        metricValue: '148 turnos confirmados · 0 huecos libres',
+        metricSub: 'Recordatorios WhatsApp 24h antes + Reprogramación sola',
+        time: '18:42',
+      },
+      {
+        from: 'client',
+        type: 'text',
+        text: 'Las chicas de recepción por fin pueden atender bien a los pacientes presentes en vez de estar colgadas del WhatsApp todo el día.',
+        highlight: '¡El mejor cambio que hicimos este año!',
+        time: '18:43',
+      },
+      {
+        from: 'soluweb',
+        type: 'text',
+        text: '¡Impecable Vale! Y el mes que viene activamos el seguimiento post-consulta automático 🙌',
+        time: '18:45',
+      },
+    ],
+  },
+  {
+    id: 'wa-3',
+    initials: 'FR',
+    avatarBg: 'bg-indigo-600',
+    name: 'Federico Ruiz · Inmobiliaria & Desarrollos',
+    status: 'en línea · CRM + Calificador IA',
+    badge: '3x más visitas calificadas',
+    floatClass: 'lg:-rotate-1 animate-float',
+    reaction: '🚀 💯',
+    messages: [
+      {
+        from: 'client',
+        type: 'text',
+        text: 'Cristian, mirá la diferencia con el CRM nuevo y las alertas al WhatsApp de los vendedores:',
+        time: '11:20',
+      },
+      {
+        from: 'client',
+        type: 'text',
+        text: 'Antes teníamos los leads desparramados en 4 celulares distintos y un Excel que nadie actualizaba. Hoy cada consulta de Instagram o ZonaProp entra al embudo, la IA filtra presupuesto y agenda la visita.',
+        highlight: 'Cerramos 3 departamentos este mes gracias al seguimiento automático.',
+        time: '11:21',
+      },
+      {
+        from: 'soluweb',
+        type: 'text',
+        text: '¡Vamos Fede! Cero presupuestos olvidados = cierres seguros 🎯',
+        time: '11:23',
+      },
+    ],
+  },
+];
+
+const socialComments = [
+  {
+    platform: 'Instagram',
+    handle: '@estudiocontable.paz',
+    author: 'Estudio Contable Paz & Asoc.',
+    role: 'Tucumán · Automatización AFIP/ARCA',
+    avatar: 'EP',
+    avatarColor: 'from-pink-500 to-amber-500',
+    time: 'hace 2 días',
+    likes: '47 Me gusta',
+    comment:
+      'Pasamos de tardar 4 días a principio de mes conciliando comprobantes y mandando recordatorios a que el sistema de @soluweb.ar lo haga en 15 minutos solo. Nivel de diseño y soporte 10/10 👏🔥',
+    reply: '¡Gracias chicos! Un placer automatizar todo el flujo contable con ustedes 🚀',
+  },
+  {
+    platform: 'LinkedIn',
+    author: 'Ing. Santiago Morales',
+    handle: 'Director Operativo en AgroNorte SRL',
+    role: 'ERP a Medida + Control de Stock',
+    avatar: 'SM',
+    avatarColor: 'from-brand to-sky-500',
+    time: 'hace 5 días',
+    likes: '63 reacciones',
+    comment:
+      'Buscábamos un sistema que se adapte a nuestra operatoria real de galpón, logística y sucursales sin pagar licencias en dólares impagables. Soluweb nos desarrolló un panel web y móvil a medida que hoy usa todo el equipo.',
+    reply: '¡Gracias Santiago! Que el software se adapte a la empresa y no al revés es nuestra regla #1.',
+  },
+  {
+    platform: 'Instagram',
+    handle: '@mayorista.textilsur',
+    author: 'Mayorista Textil Sur',
+    role: 'E-Commerce B2B + Bot de Pedidos',
+    avatar: 'TS',
+    avatarColor: 'from-purple-500 to-pink-500',
+    time: 'hace 1 semana',
+    likes: '39 Me gusta',
+    comment:
+      'Nuestros clientes mayoristas ahora piden por la web o por WhatsApp a cualquier hora y el stock se descuenta solo del depósito. Nos sacaron un peso enorme de encima 🙌✨',
+    reply: '¡A seguir escalando esas ventas mayoristas 24/7! 💙',
+  },
+];
+---
+
+<section id="resultados" class="relative overflow-hidden py-24 lg:py-32">
+  <!-- Resplandor ambiental de fondo -->
+  <div class="pointer-events-none absolute top-1/3 left-1/2 -z-10 h-[550px] w-[1050px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/15 blur-[150px]"></div>
+
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <!-- Encabezado de sección -->
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <span class="eyebrow">Resultados reales · Prueba social</span>
+      <h2 class="mt-3 text-3xl font-extrabold sm:text-5xl">
+        Lo que nos escriben por <span class="skew-tag">WhatsApp</span> y redes cuando el sistema empieza a trabajar solo.
+      </h2>
+      <p class="mt-4 text-lg text-ink-300">
+        Capturas y mensajes de dueños de negocios que dejaron atrás el caos de planillas y hoy tienen su atención, ventas y administración automatizadas.
+      </p>
+    </div>
+
+    <!-- GRILLA DE CAPTURAS FLOTANTES DE WHATSAPP -->
+    <div class="mt-16 grid gap-8 lg:grid-cols-3 lg:items-start">
+      {
+        waCaptures.map((cap) => (
+          <div class={`reveal group relative ${cap.floatClass}`}>
+            {/* Píldora flotante superior con métrica clave */}
+            <div class="absolute -top-4 left-5 z-20 inline-flex items-center gap-1.5 rounded-full border border-spark/40 bg-ink-900/95 px-3.5 py-1 text-xs font-extrabold text-spark shadow-lg backdrop-blur">
+              <span class="size-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              {cap.badge}
+            </div>
+
+            {/* Píldora flotante de reacciones estilo WhatsApp */}
+            <div class="absolute -right-2 -bottom-3 z-20 flex items-center gap-1 rounded-full border border-white/15 bg-[#1F2C3A] px-3 py-1 text-sm shadow-xl transition duration-300 group-hover:scale-110">
+              <span>{cap.reaction}</span>
+            </div>
+
+            {/* Marco de captura móvil de WhatsApp */}
+            <div class="overflow-hidden rounded-[2rem] border border-white/15 bg-[#0B141A] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] transition duration-500 group-hover:-translate-y-2 group-hover:border-brand/60 group-hover:shadow-[0_30px_70px_-10px_rgba(15,51,255,0.35)]">
+              {/* Barra de estado del teléfono */}
+              <div class="flex items-center justify-between bg-[#111B21] px-5 pt-2.5 pb-1 text-[10px] font-semibold text-ink-400">
+                <span>9:41</span>
+                <div class="flex items-center gap-1.5">
+                  <span>5G</span>
+                  <span class="inline-block h-2 w-4 rounded-xs border border-ink-400 p-0.5">
+                    <span class="block h-full w-full bg-emerald-400"></span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Header de WhatsApp Dark */}
+              <div class="flex items-center justify-between border-b border-white/10 bg-[#1F2C3A] px-4 py-3">
+                <div class="flex items-center gap-3">
+                  <div class="relative">
+                    <div class={`grid size-10 place-items-center rounded-full font-display text-xs font-black text-white ${cap.avatarBg}`}>
+                      {cap.initials}
+                    </div>
+                    <span class="absolute right-0 bottom-0 size-2.5 rounded-full border-2 border-[#1F2C3A] bg-emerald-400"></span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-white leading-tight">{cap.name}</p>
+                    <p class="text-[11px] text-emerald-400">{cap.status}</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 text-ink-300">
+                  <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                  <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                </div>
+              </div>
+
+              {/* Cuerpo del chat con fondo WhatsApp */}
+              <div class="wa-chat-bg space-y-3 p-4">
+                <div class="mx-auto w-fit rounded-lg bg-[#182229] px-2.5 py-0.5 text-[10px] font-medium text-ink-300 shadow">
+                  HOY · CHAT VERIFICADO
+                </div>
+
+                {cap.messages.map((m) =>
+                  m.from === 'client' ? (
+                    <div class="mr-6 rounded-2xl rounded-tl-xs border border-white/5 bg-[#202C33] p-3 text-xs text-ink-100 shadow-md">
+                      {m.type === 'audio' && (
+                        <div>
+                          <div class="flex items-center gap-2.5 rounded-xl bg-[#182229] px-3 py-2">
+                            <span class="grid size-8 shrink-0 place-items-center rounded-full bg-emerald-500 text-ink-900">
+                              <svg class="size-4" viewBox="0 0 20 20" fill="currentColor"><path d="M6.3 4.84A1.5 1.5 0 018.6 3.6l7.5 4.9a1.5 1.5 0 010 2.5l-7.5 4.9a1.5 1.5 0 01-2.3-1.26V4.84z"/></svg>
+                            </span>
+                            <div class="flex flex-1 items-center gap-1 h-5">
+                              {[60, 95, 45, 80, 100, 55, 90, 40, 75, 95, 50, 85, 65, 90, 45, 70].map((h, idx) => (
+                                <span
+                                  class="wave-bar flex-1 rounded-full bg-emerald-400"
+                                  style={`height: ${h}%; animation-delay: ${(idx % 5) * 0.15}s`}
+                                />
+                              ))}
+                            </div>
+                            <span class="text-[11px] font-mono font-semibold text-emerald-400">{m.duration}</span>
+                          </div>
+                          <p class="mt-2 italic text-[11px] text-ink-300">{m.transcript}</p>
+                        </div>
+                      )}
+
+                      {m.type === 'metric' && (
+                        <div class="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-2.5">
+                          <p class="text-[10px] font-bold tracking-wider text-emerald-400 uppercase">{m.metricTitle}</p>
+                          <p class="mt-0.5 font-display text-sm font-extrabold text-white">{m.metricValue}</p>
+                          <p class="mt-0.5 text-[11px] text-ink-300">{m.metricSub}</p>
+                        </div>
+                      )}
+
+                      {m.type === 'text' && (
+                        <p class="leading-relaxed">
+                          {m.text}
+                          {m.highlight && <strong class="mt-1 block font-semibold text-spark">{m.highlight}</strong>}
+                        </p>
+                      )}
+
+                      <div class="mt-1 text-right text-[10px] text-ink-400">{m.time}</div>
+                    </div>
+                  ) : (
+                    <div class="ml-8 rounded-2xl rounded-tr-xs bg-brand p-3 text-xs text-white shadow-md">
+                      <p class="leading-relaxed">{m.text}</p>
+                      <div class="mt-1 flex items-center justify-end gap-1 text-[10px] text-brand-100">
+                        <span>{m.time}</span>
+                        <svg class="size-3.5 text-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 12.5l4 4 8.5-8.5M9 12.5l4 4 8.5-8.5"/></svg>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- COMENTARIOS FLOTANTES DE INSTAGRAM & LINKEDIN -->
+    <div class="mt-16">
+      <div class="reveal mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex size-3 rounded-full bg-brand"></span>
+          <h3 class="text-lg font-extrabold text-white sm:text-xl">
+            Comentarios destacados en Instagram y LinkedIn
+          </h3>
+        </div>
+        <span class="text-xs font-medium text-ink-400">Clientes verificados en toda Argentina</span>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          socialComments.map((item, idx) => (
+            <article
+              class={`reveal card group relative flex flex-col justify-between p-6 transition duration-300 hover:-translate-y-1.5 hover:border-brand/50 ${
+                idx === 1 ? 'md:-translate-y-2' : ''
+              }`}
+            >
+              <div>
+                {/* Cabecera usuario red social */}
+                <div class="flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3">
+                    <div class={`grid size-11 place-items-center rounded-full bg-gradient-to-tr ${item.avatarColor} font-display text-xs font-black text-white shadow-md`}>
+                      {item.avatar}
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-1.5">
+                        <p class="text-sm font-bold text-white">{item.author}</p>
+                        <svg class="size-4 text-sky-400" viewBox="0 0 20 20" fill="currentColor" aria-label="Verificado">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                        </svg>
+                      </div>
+                      <p class="text-xs text-ink-400">{item.handle}</p>
+                    </div>
+                  </div>
+                  <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold text-ink-200">
+                    {item.platform}
+                  </span>
+                </div>
+
+                {/* Etiqueta de servicio implementado */}
+                <div class="mt-3 inline-block rounded-md bg-brand/15 px-2.5 py-0.5 text-[11px] font-semibold text-brand-200">
+                  {item.role}
+                </div>
+
+                {/* Texto del comentario */}
+                <p class="mt-3 text-sm leading-relaxed text-ink-200">
+                  “{item.comment}”
+                </p>
+              </div>
+
+              <div>
+                {/* Respuesta de Soluweb */}
+                <div class="mt-4 rounded-xl border border-white/10 bg-ink-900/70 p-3 text-xs">
+                  <div class="flex items-center gap-1.5 font-bold text-white">
+                    <span class="inline-block h-2 w-3 -skew-x-12 bg-brand"></span>
+                    <span>soluweb.ar</span>
+                    <span class="text-[10px] font-normal text-ink-400">· Autor</span>
+                  </div>
+                  <p class="mt-1 text-ink-300">{item.reply}</p>
+                </div>
+
+                {/* Footer de likes */}
+                <div class="mt-4 flex items-center justify-between border-t border-white/10 pt-3 text-xs text-ink-400">
+                  <span class="inline-flex items-center gap-1.5 font-semibold text-rose-400">
+                    <svg class="size-4 fill-current" viewBox="0 0 20 20"><path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/></svg>
+                    {item.likes}
+                  </span>
+                  <span>{item.time}</span>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- CTA debajo de las capturas -->
+    <div class="reveal mt-14 flex flex-col items-center justify-between gap-4 rounded-3xl border border-brand/40 bg-gradient-to-r from-brand/20 via-ink-800 to-brand/10 p-6 sm:flex-row sm:px-8">
+      <div>
+        <p class="font-display text-lg font-extrabold text-white">
+          ¿Querés que tu negocio sea el próximo caso de éxito?
+        </p>
+        <p class="text-sm text-ink-300">
+          Te mostramos en 15 minutos cómo funcionaría un asistente IA o sistema en tu empresa.
+        </p>
+      </div>
+      <a
+        href={waLink('Hola Soluweb! Vi los resultados de sus clientes en la web y quiero consultar para mi negocio.')}
+        target="_blank"
+        rel="noopener"
+        class="btn-primary shrink-0"
+      >
+        Quiero probarlo en mi negocio
+      </a>
+    </div>
+  </div>
+</section>

@@ -30,13 +30,27 @@
   --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
 
   --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float-slow 9s ease-in-out infinite;
+  --animate-float-reverse: float-reverse 8s ease-in-out infinite;
   --animate-marquee: marquee 40s linear infinite;
   --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(0.6deg); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(-0.8deg); }
+  50% { transform: translateY(-14px) rotate(0.8deg); }
+}
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(-8px) rotate(0.8deg); }
+  50% { transform: translateY(8px) rotate(-0.8deg); }
+}
+@keyframes wave-bar {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
 }
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -110,6 +124,19 @@
   }
   .text-gradient {
     @apply bg-gradient-to-r from-white via-brand-200 to-brand-400 bg-clip-text text-transparent;
+  }
+  /* Fondo sutil para pantallas tipo captura de WhatsApp Dark Mode */
+  .wa-chat-bg {
+    background-color: #0b141a;
+    background-image:
+      radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0),
+      radial-gradient(rgba(15, 51, 255, 0.06) 1px, transparent 0);
+    background-size: 24px 24px;
+    background-position: 0 0, 12px 12px;
+  }
+  .wave-bar {
+    transform-origin: center;
+    animation: wave-bar 1.2s ease-in-out infinite;
   }
 }
 
