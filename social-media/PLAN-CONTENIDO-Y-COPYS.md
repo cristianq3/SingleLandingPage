@@ -10,14 +10,17 @@ Cada pieza está diseñada bajo la metodología **PAS (Problema → Agitación �
 
 ```text
 social-media/
-├── 01-carrusel-whatsapp-ventas/              # 6 slides (1080x1350 - 4:5) | Lead Magnet: "IA"
-├── 02-carrusel-caos-excel-crm/               # 5 slides (1080x1350 - 4:5) | Lead Magnet: "CRM"
-├── 03-carrusel-5-automatizaciones/           # 5 slides (1080x1350 - 4:5) | Lead Magnet: "AUTO"
-├── 04-posts-individuales/                    # 3 posts (1080x1350 - 4:5)  | Palabras clave: "PILOTO", "SISTEMA", "DIAGNOSTICO"
+├── 01-carrusel-whatsapp-ventas/              # 6 slides (1080x1350 - 4:5)  | Lead Magnet: "IA"
+├── 02-carrusel-caos-excel-crm/               # 5 slides (1080x1350 - 4:5)  | Lead Magnet: "CRM"
+├── 03-carrusel-5-automatizaciones/           # 5 slides (1080x1350 - 4:5)  | Lead Magnet: "AUTO"
+├── 04-posts-individuales/                    # 3 posts (1080x1350 - 4:5)   | Palabras clave: "PILOTO", "SISTEMA", "DIAGNOSTICO"
 ├── 05-reels-y-stories/                       # 3 portadas/stories (1080x1920 - 9:16) + Guiones completos
 ├── 06-historias-carrusel-whatsapp-ia/        # 4 stories (1080x1920 - 9:16) | Lead Magnet Stories: "IA"
 ├── 07-historias-carrusel-crm-embudo/         # 4 stories (1080x1920 - 9:16) | Lead Magnet Stories: "CRM"
 ├── 08-historias-carrusel-5-automatizaciones/ # 5 stories (1080x1920 - 9:16) | Lead Magnet Stories: "AUTO"
+├── 09-carrusel-cuadrado-auditoria-ia/        # 5 slides (1080x1080 - 1:1)  | Lead Magnet: "AUDITORIA"
+├── 10-carrusel-cuadrado-costo-no-automatizar/# 5 slides (1080x1080 - 1:1)  | Lead Magnet: "CALCULO"
+├── 11-carrusel-cuadrado-3-agentes-ia/        # 5 slides (1080x1080 - 1:1)  | Lead Magnet: "AGENTES"
 └── PLAN-CONTENIDO-Y-COPYS.md                 # Este documento con todos los textos listos para copiar y pegar
 ```
 
@@ -228,4 +231,116 @@ Diseñados como secuencias narrativas de 4 a 5 historias continuas (tap forward)
 5. **Story 05 (Lead Magnet / CTA):** `story-05.png`
    - **Copy (<150 car):** *Respondé "AUTO" y te mandamos el Checklist con 15 procesos listos para automatizar gratis ⚡*
    - **Acción esperada:** Mensaje directo con la palabra `AUTO`.
+
+---
+
+## 5. CARRUSELES CUADRADOS PARA FEED (Formato 1:1 — `1080x1080 px`)
+
+Diseñados en formato cuadrado (1:1), el estándar universal para feeds de **Instagram, LinkedIn, Facebook y Twitter/X**. Ideales para lectura rápida en móvil y escritorio con tarjetas compactas y cajas de conversión de alta densidad visual.
+
+---
+
+### Carrusel Cuadrado 01: Auditoría en 4 Niveles: ¿Tu PyME está lista para la IA?
+- **Carpeta:** `social-media/09-carrusel-cuadrado-auditoria-ia/` (`slide-01.png` a `slide-05.png`)
+- **Objetivo:** Educar y desmitificar la IA, posicionando a Soluweb como un socio estratégico serio que no vende humo ni herramientas aisladas.
+- **Lead Magnet:** Sesión de Auditoría 1 a 1 de Procesos e IA 100% Bonificada + Test en PDF.
+- **Palabra clave:** `AUDITORIA`
+
+#### Copy para publicar (Instagram / LinkedIn / Facebook):
+> **La Inteligencia Artificial NO hace milagros sobre el desorden operativo.** 🛑🧠
+>
+> Hoy todo el mundo habla de IA, ChatGPT y automatizaciones. Pero la realidad es que el **80% de las empresas que compran herramientas sueltas terminan abandonándolas** al segundo mes porque no están conectadas a su flujo diario de ventas.
+>
+> Antes de gastar un solo peso en tecnología, pasá este test rápido de 4 niveles:
+>
+> ❌ **Nivel 1:** ¿Tus contactos están desparramados en WhatsApps de vendedores o cuadernos? (Primero necesitás un CRM unificado).
+> ❌ **Nivel 2:** ¿Tu equipo pierde 3 horas al día copiando planillas y pasando datos a mano? (Ahí la automatización ahorra 20 h/semana).
+> ✅ **Nivel 3:** Chatbots con IA entrenados con tu catálogo real para atender 24/7 sin inventar respuestas.
+> ✅ **Nivel 4:** Agentes con permisos que facturan en ARCA, concilian cobros y actualizan stock en automático.
+>
+> En **Soluweb** no te vendemos software genérico: armamos la arquitectura a medida para que tu negocio funcione con la precisión de un reloj suizo.
+>
+> 🎁 **AUDITORÍA BONIFICADA:**
+> Comentá la palabra **`AUDITORIA`** 👇 y te enviamos por mensaje directo el test completo en PDF + 30 minutos de diagnóstico 1 a 1 sin cargo.
+>
+> 🔗 Conocé nuestras soluciones en: **soluweb.com.ar**
+>
+> `#InteligenciaArtificial` `#AuditoriaPyME` `#TransformacionDigital` `#Automatizacion` `#CRM` `#Soluweb` `#Argentina` `#EficienciaOperativa`
+
+#### Respuesta automática por DM (cuando comentan `AUDITORIA`):
+> ¡Hola! 🚀 Excelente decisión solicitar tu **Auditoría de Procesos e IA de Soluweb**.
+> Te enviamos el Test de Diagnóstico en PDF para que evalúes tu empresa en 5 minutos.
+> Además, tenés reservada una **sesión 1 a 1 de 30 min sin cargo** con nuestro equipo técnico para analizar tus cuellos de botella.
+> Contame: **¿cuál es la tarea operativa que más tiempo le quita a tu equipo hoy?**
+
+---
+
+### Carrusel Cuadrado 02: El Costo Oculto de NO Automatizar tu Negocio
+- **Carpeta:** `social-media/10-carrusel-cuadrado-costo-no-automatizar/` (`slide-01.png` a `slide-05.png`)
+- **Objetivo:** Mostrar con números reales y matemática financiera el dinero que las PyMEs pierden todos los meses en tareas mecánicas.
+- **Lead Magnet:** Hoja de Cálculo Interactiva "Calculadora de Ahorro Operativo".
+- **Palabra clave:** `CALCULO`
+
+#### Copy para publicar:
+> **Creés que no invertir en tecnología te cuida el bolsillo, pero las tareas manuales te están costando millones.** 💸📉
+>
+> Hagamos la cuenta matemática real:
+> Si tenés un equipo de 3 personas y cada una dedica apenas 1 hora al día a copiar datos de pedidos, armar facturas a mano y pasar presupuestos...
+>
+> 📌 Son **3 horas diarias**.
+> 📌 Son **60 horas al mes**.
+> 📌 Son más de **$450.000 mensuales** pagados en sueldos para hacer el trabajo que un software resuelve en 4 segundos.
+>
+> Y a eso sumale:
+> ❌ Los leads que no compran porque tardaron 3 horas en responderles.
+> ❌ Las cobranzas vencidas que nadie reclama por vergüenza o falta de tiempo.
+>
+> Una automatización trabaja 24/7, no se toma vacaciones, no se equivoca de celda y cuesta una pequeña fracción.
+>
+> 🧮 **RECURSO GRATIS:**
+> Comentá la palabra **`CALCULO`** 👇 y te enviamos por privado nuestra **Calculadora de Ahorro Operativo** en Google Sheets para que descubras cuánta plata podés recuperar este trimestre.
+>
+> 🔗 Más información en: **soluweb.com.ar**
+>
+> `#FinanzasPyME` `#CostosOperativos` `#Productividad` `#AutomatizacionDeProcesos` `#Rentabilidad` `#Soluweb` `#Make` `#n8n`
+
+#### Respuesta automática por DM (cuando comentan `CALCULO`):
+> ¡Hola! 🙌 Acá tenés el acceso a la **Calculadora de Ahorro Operativo de Soluweb**.
+> Vas a poder ingresar la cantidad de personas de tu equipo y las tareas repetitivas para ver en pesos y horas tu retorno de inversión.
+> ¿Querés que revisemos juntos tus números en una llamada de 15 minutos? Decime a qué rubro se dedica tu negocio y te asesoro 📈
+
+---
+
+### Carrusel Cuadrado 03: 3 Agentes de IA listos para activar en tu empresa en 14 días
+- **Carpeta:** `social-media/11-carrusel-cuadrado-3-agentes-ia/` (`slide-01.png` a `slide-05.png`)
+- **Objetivo:** Presentar casos de uso tangibles y accionables de agentes autónomos que cualquier PyME puede implementar rápidamente.
+- **Lead Magnet:** Blueprint Técnico y Plano de Arquitectura de Agentes de IA.
+- **Palabra clave:** `AGENTES`
+
+#### Copy para publicar:
+> **No necesitás ser Silicon Valley ni gastar fortunas para tener Inteligencia Artificial en tu empresa.** ⚡🤖
+>
+> En **Soluweb** diseñamos e implementamos **Agentes de IA autónomos** listos para operar en 14 días, atacando los 3 dolores más costosos de cualquier PyME:
+>
+> 1️⃣ **El Calificador Comercial (Ventas):**
+> Responde en WhatsApp en 3 segundos, contesta consultas técnicas con tu catálogo, filtra a los compradores calificados y te agenda videollamadas directo en Google Calendar.
+>
+> 2️⃣ **El Asistente Financiero (Cobranzas):**
+> Detecta transferencias entrantes, emite la factura electrónica en ARCA/AFIP y envía recordatorios cordiales a clientes morosos (reduciendo la morosidad hasta un 42%).
+>
+> 3️⃣ **El Gestor de Stock y Tracking (Operaciones):**
+> Le da el estado de envío al cliente al instante y te avisa a tu celular antes de que te quedes sin stock crítico.
+>
+> 🛠️ **BLUEPRINT TÉCNICO GRATUITO:**
+> Comentá **`AGENTES`** acá abajo 👇 y te mandamos por mensaje privado el mapa técnico de arquitectura para conectar OpenAI, WhatsApp y tus sistemas actuales.
+>
+> 🔗 Implementá con nosotros: **soluweb.com.ar**
+>
+> `#AgentesIA` `#OpenAI` `#WhatsAppBusiness` `#AutomatizacionComercial` `#InnovacionEmpresarial` `#Soluweb` `#PyMEs`
+
+#### Respuesta automática por DM (cuando comentan `AGENTES`):
+> ¡Hola! 🤖 Qué bueno que te interese la implementación de **Agentes de IA**.
+> Te compartimos el **Blueprint Técnico de Arquitectura de Soluweb** con los diagramas y conexiones exactas (OpenAI + n8n/Make + WhatsApp + Base de datos).
+> ¿Cuál de los 3 agentes te gustaría activar primero en tu empresa (Ventas, Cobranzas u Operaciones)? Contame y te paso un ejemplo en vivo 🚀
+
 

@@ -125,29 +125,42 @@ function renderBadge(text, x, y, bg = '#0F33FF', fg = '#FFFFFF', size = 22) {
 // Tarjeta de cristal (glass card) con check o cruz
 function renderBulletCard({ x, y, w, h, iconType = 'check', title, subtitle }) {
   const isBad = iconType === 'cross';
-  const accent = isBad ? '#EF4444' : '#0F33FF';
-  const badgeBg = isBad ? 'rgba(239,68,68,0.18)' : 'rgba(15,51,255,0.25)';
-  let svg = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="24" fill="#141418" fill-opacity="0.88" stroke="${accent}" stroke-opacity="0.45" stroke-width="2"/>`;
+  const isLight = iconType === 'light';
+  const accent = isBad ? '#EF4444' : isLight ? '#FFF498' : '#0F33FF';
+  const badgeBg = isBad ? 'rgba(239,68,68,0.18)' : isLight ? 'rgba(255,244,152,0.18)' : 'rgba(15,51,255,0.25)';
+  const r = h <= 75 ? 16 : 24;
+  let svg = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="#141418" fill-opacity="0.88" stroke="${accent}" stroke-opacity="0.45" stroke-width="2"/>`;
   svg += `<polygon points="${x},${y + h} ${x + 8},${y} ${x + 14},${y} ${x + 6},${y + h}" fill="${accent}"/>`;
   // Icon circle
-  const cx = x + 56;
+  const cx = x + (h <= 75 ? 42 : h <= 95 ? 48 : 56);
   const cy = y + h / 2;
-  svg += `<circle cx="${cx}" cy="${cy}" r="24" fill="${badgeBg}" stroke="${accent}" stroke-width="2"/>`;
+  const cr = h <= 75 ? 16 : h <= 95 ? 20 : 24;
+  svg += `<circle cx="${cx}" cy="${cy}" r="${cr}" fill="${badgeBg}" stroke="${accent}" stroke-width="2"/>`;
   if (isBad) {
-    svg += `<path d="M${cx - 8} ${cy - 8} L${cx + 8} ${cy + 8} M${cx + 8} ${cy - 8} L${cx - 8} ${cy + 8}" stroke="#F87171" stroke-width="3.5" stroke-linecap="round"/>`;
+    const s = h <= 75 ? 5 : 7;
+    svg += `<path d="M${cx - s} ${cy - s} L${cx + s} ${cy + s} M${cx + s} ${cy - s} L${cx - s} ${cy + s}" stroke="#F87171" stroke-width="3" stroke-linecap="round"/>`;
+  } else if (isLight) {
+    svg += `<circle cx="${cx}" cy="${cy}" r="4" fill="#FFF498"/>`;
   } else {
-    svg += `<path d="M${cx - 9} ${cy} L${cx - 2} ${cy + 7} L${cx + 10} ${cy - 7}" fill="none" stroke="#FFF498" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+    const s = h <= 75 ? 6 : 8;
+    svg += `<path d="M${cx - s} ${cy} L${cx - 2} ${cy + (h <= 75 ? 5 : 6)} L${cx + (h <= 75 ? 7 : 9)} ${cy - (h <= 75 ? 5 : 7)}" fill="none" stroke="#FFF498" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
   }
+  const textX = x + (h <= 75 ? 76 : h <= 95 ? 88 : 100);
   if (subtitle) {
-    svg += renderRichLine(fBold, title, x + 100, y + h / 2 - 6, 27, '#FFFFFF', -0.5);
-    svg += renderRichLine(fReg, subtitle, x + 100, y + h / 2 + 30, 22, '#A1A1AA', 0);
+    const titleSize = h <= 95 ? 24 : 27;
+    const subSize = h <= 95 ? 19 : 22;
+    const titleY = h <= 95 ? y + h / 2 - 7 : y + h / 2 - 6;
+    const subY = h <= 95 ? y + h / 2 + 21 : y + h / 2 + 30;
+    svg += renderRichLine(fBold, title, textX, titleY, titleSize, '#FFFFFF', -0.5);
+    svg += renderRichLine(fReg, subtitle, textX, subY, subSize, '#A1A1AA', 0);
   } else {
-    svg += renderRichLine(fBold, title, x + 100, y + h / 2 + 10, 28, '#FFFFFF', -0.5);
+    const titleSize = h <= 75 ? 23 : h <= 95 ? 25 : 28;
+    svg += renderRichLine(fBold, title, textX, y + h / 2 + (h <= 75 ? 7 : 9), titleSize, '#FFFFFF', -0.5);
   }
   return svg;
 }
 
-// Genera una diapositiva 1080x1350 (4:5) o 1080x1920 (9:16)
+// Genera una diapositiva 1080x1350 (4:5), 1080x1920 (9:16) o 1080x1080 (1:1 cuadrado)
 async function buildSlide({
   outPath,
   width = 1080,
@@ -166,13 +179,18 @@ async function buildSlide({
   footerTag = 'soluweb.com.ar',
   swipeText = 'DESLIZÁ →',
 }) {
+  const isSquare = height === 1080;
+  const isStory = height === 1920;
+
   // Fondo base con imagen 3D oscurecida y degradado
   const bgBuffer = await sharp(join(root, 'src', 'assets', 'img', bgImage))
     .resize(width, height, { fit: 'cover', position: bgPosition })
     .modulate({ brightness: bgOpacity, saturation: 1.15 })
     .toBuffer();
 
-  const logoPng = await sharp(Buffer.from(logoSvg), { density: 220 }).resize({ width: 220 }).png().toBuffer();
+  const logoW = isSquare ? 190 : 220;
+  const logoTop = isSquare ? 48 : 62;
+  const logoPng = await sharp(Buffer.from(logoSvg), { density: 220 }).resize({ width: logoW }).png().toBuffer();
 
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
   <defs>
@@ -199,45 +217,48 @@ async function buildSlide({
 
   // Header: Paginador a la derecha
   if (slideNum && totalSlides) {
-    const pillW = 128;
+    const pillW = isSquare ? 116 : 128;
+    const pillH = isSquare ? 42 : 48;
+    const pillY = isSquare ? 48 : 62;
     const pillX = width - 72 - pillW;
-    svg += `<rect x="${pillX}" y="62" width="${pillW}" height="48" rx="24" fill="#141418" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1.5"/>`;
+    svg += `<rect x="${pillX}" y="${pillY}" width="${pillW}" height="${pillH}" rx="${pillH / 2}" fill="#141418" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1.5"/>`;
     const numStr = `0${slideNum} / 0${totalSlides}`;
-    const nw = textWidth(fBold, numStr, 20, 1);
-    svg += renderLine(fBold, numStr, pillX + (pillW - nw) / 2, 93, 20, '#B3BFFF', 1);
+    const nw = textWidth(fBold, numStr, isSquare ? 18 : 20, 1);
+    svg += renderLine(fBold, numStr, pillX + (pillW - nw) / 2, pillY + (isSquare ? 28 : 31), isSquare ? 18 : 20, '#B3BFFF', 1);
   }
 
-  let cursorY = height === 1920 ? 280 : ctaBox && bullets.length > 0 ? 165 : 195;
+  let cursorY = isStory ? 280 : isSquare ? (ctaBox && bullets.length > 0 ? 128 : 145) : (ctaBox && bullets.length > 0 ? 165 : 195);
 
   // Eyebrow badge
   if (eyebrow) {
-    svg += renderBadge(eyebrow.toUpperCase(), 72, cursorY, '#0F33FF', '#FFFFFF', height === 1920 ? 22 : 20);
-    cursorY += height === 1920 ? 95 : ctaBox && bullets.length > 0 ? 74 : 88;
+    svg += renderBadge(eyebrow.toUpperCase(), 72, cursorY, '#0F33FF', '#FFFFFF', isStory ? 22 : isSquare ? 17 : 20);
+    cursorY += isStory ? 95 : isSquare ? 58 : (ctaBox && bullets.length > 0 ? 74 : 88);
   }
 
   // Headline
-  const lineH = Math.round(headlineSize * 1.14);
+  const finalHeadSize = isSquare ? (bullets.length === 0 ? Math.min(headlineSize, 62) : Math.min(headlineSize, 56)) : headlineSize;
+  const lineH = isSquare ? Math.round(finalHeadSize * 1.12) : Math.round(finalHeadSize * 1.14);
   for (const line of headlineLines) {
-    svg += renderRichLine(fBlack, line, 72, cursorY + headlineSize * 0.8, headlineSize, '#FFFFFF', -1.5);
+    svg += renderRichLine(fBlack, line, 72, cursorY + finalHeadSize * 0.8, finalHeadSize, '#FFFFFF', -1.5);
     cursorY += lineH;
   }
 
-  cursorY += height === 1920 ? 38 : ctaBox && bullets.length > 0 ? 22 : 34;
+  cursorY += isStory ? 38 : isSquare ? (bullets.length === 0 ? 22 : 16) : (ctaBox && bullets.length > 0 ? 22 : 34);
 
   // Subtext
   if (subtext) {
-    const subSize = height === 1920 ? 32 : ctaBox && bullets.length > 0 ? 26 : 30;
-    const subLH = height === 1920 ? 46 : ctaBox && bullets.length > 0 ? 36 : 44;
-    const p = renderParagraph(fReg, subtext, 72, cursorY + 22, width - 144, subSize, subLH, '#D4D4D8', 0);
+    const subSize = isStory ? 32 : isSquare ? (bullets.length === 0 ? 24 : 22) : (ctaBox && bullets.length > 0 ? 26 : 30);
+    const subLH = isStory ? 46 : isSquare ? (bullets.length === 0 ? 35 : 32) : (ctaBox && bullets.length > 0 ? 36 : 44);
+    const p = renderParagraph(fReg, subtext, 72, cursorY + (isSquare ? 16 : 22), width - 144, subSize, subLH, '#D4D4D8', 0);
     svg += p.svg;
-    cursorY = p.bottomY + (height === 1920 ? 36 : ctaBox && bullets.length > 0 ? 16 : 28);
+    cursorY = p.bottomY + (isStory ? 36 : isSquare ? (bullets.length === 0 ? 22 : 14) : (ctaBox && bullets.length > 0 ? 16 : 28));
   }
 
   // Bullets
   if (bullets.length > 0) {
     const hasSub = bullets.some((b) => b.subtitle);
-    const cardH = height === 1920 ? (hasSub ? 134 : 106) : hasSub ? (ctaBox ? 104 : 120) : ctaBox ? 72 : 96;
-    const gap = height === 1920 ? 20 : ctaBox ? 12 : 20;
+    const cardH = isStory ? (hasSub ? 134 : 106) : isSquare ? (hasSub ? (bullets.length >= 3 ? 76 : 88) : 66) : (hasSub ? (ctaBox ? 104 : 120) : (ctaBox ? 72 : 96));
+    const gap = isStory ? 20 : isSquare ? 10 : (ctaBox ? 12 : 20);
     for (const b of bullets) {
       svg += renderBulletCard({
         x: 72,
@@ -271,41 +292,58 @@ async function buildSlide({
 
   // CTA Box (Lead Magnet Box)
   if (ctaBox && !ctaBox.interactivePoll) {
-    const boxY = height === 1920 ? Math.max(cursorY + 30, height - 520) : Math.min(Math.max(cursorY + 12, height - 420), height - 355);
-    const boxH = height === 1920 ? 275 : 225;
-    svg += `<rect x="72" y="${boxY}" width="${width - 144}" height="${boxH}" rx="28" fill="#0F33FF"/>`;
+    const isSquareLarge = isSquare && bullets.length === 0;
+    const boxH = isStory ? 275 : isSquare ? (isSquareLarge ? 220 : 185) : 225;
+    const boxY = isStory
+      ? Math.max(cursorY + 30, height - 520)
+      : isSquare
+        ? (isSquareLarge ? Math.max(cursorY + 24, height - 340) : Math.max(cursorY + 12, height - 280))
+        : Math.min(Math.max(cursorY + 12, height - 420), height - 355);
+
+    svg += `<rect x="72" y="${boxY}" width="${width - 144}" height="${boxH}" rx="${isSquare ? 24 : 28}" fill="#0F33FF"/>`;
     svg += `<polygon points="${width - 280},${boxY} ${width - 110},${boxY} ${width - 170},${boxY + boxH} ${width - 340},${boxY + boxH}" fill="#FFFFFF" fill-opacity="0.09"/>`;
-    svg += renderLine(fBold, ctaBox.kicker.toUpperCase(), 112, boxY + (height === 1920 ? 56 : 50), 20, '#FFF498', 2);
-    svg += renderRichLine(fBlack, ctaBox.title, 112, boxY + (height === 1920 ? 122 : 106), height === 1920 ? 46 : 40, '#FFFFFF', -1);
-    svg += renderRichLine(fBold, ctaBox.subtitle, 112, boxY + (height === 1920 ? 174 : 152), height === 1920 ? 25 : 23, '#E0E7FF', 0);
+
+    const kickY = boxY + (isStory ? 56 : isSquareLarge ? 44 : isSquare ? 38 : 50);
+    const titleY = boxY + (isStory ? 122 : isSquareLarge ? 94 : isSquare ? 82 : 106);
+    const subY = boxY + (isStory ? 174 : isSquareLarge ? 138 : isSquare ? 120 : 152);
+    const btnY = boxY + (isStory ? 204 : isSquareLarge ? 162 : isSquare ? 136 : 170);
+    const btnH = isSquare ? (isSquareLarge ? 38 : 34) : 42;
+    const kickSize = isSquare ? (isSquareLarge ? 18 : 17) : 20;
+    const titleSize = isStory ? 46 : isSquare ? (isSquareLarge ? 36 : 33) : 40;
+    const subSize = isStory ? 25 : isSquare ? (isSquareLarge ? 21 : 19) : 23;
+    const btnSize = isSquare ? (isSquareLarge ? 17 : 16) : 20;
+
+    svg += renderLine(fBold, ctaBox.kicker.toUpperCase(), 112, kickY, kickSize, '#FFF498', 2);
+    svg += renderRichLine(fBlack, ctaBox.title, 112, titleY, titleSize, '#FFFFFF', -1);
+    svg += renderRichLine(fBold, ctaBox.subtitle, 112, subY, subSize, '#E0E7FF', 0);
     if (ctaBox.button) {
-      const bw = textWidth(fBlack, ctaBox.button, 20, 1) + 56;
-      const btnY = boxY + (height === 1920 ? 204 : 170);
-      svg += `<rect x="112" y="${btnY}" width="${bw}" height="42" rx="21" fill="#0C0C0C"/>`;
-      svg += renderLine(fBlack, ctaBox.button, 140, btnY + 28, 20, '#FFF498', 1);
+      const bw = textWidth(fBlack, ctaBox.button, btnSize, 1) + 48;
+      svg += `<rect x="112" y="${btnY}" width="${bw}" height="${btnH}" rx="${btnH / 2}" fill="#0C0C0C"/>`;
+      svg += renderLine(fBlack, ctaBox.button, 136, btnY + Math.round(btnH * 0.65), btnSize, '#FFF498', 1);
     }
   }
 
   // Footer bar
-  const footY = height - 74;
-  svg += `<line x1="72" y1="${footY - 36}" x2="${width - 72}" y2="${footY - 36}" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1.5"/>`;
-  svg += renderLine(fBold, footerTag, 72, footY, 22, '#A1A1AA', 0.5);
+  const footY = isSquare ? height - 50 : height - 74;
+  svg += `<line x1="72" y1="${footY - 26}" x2="${width - 72}" y2="${footY - 26}" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1.5"/>`;
+  svg += renderLine(fBold, footerTag, 72, footY, isSquare ? 19 : 22, '#A1A1AA', 0.5);
 
   if (swipeText) {
     const cleanSwipe = swipeText.replace(/[→↗★]/g, '').trim();
-    const sw = textWidth(fBold, cleanSwipe, 22, 1.5);
+    const sw = textWidth(fBold, cleanSwipe, isSquare ? 19 : 22, 1.5);
     const sx = width - 72 - sw - 28;
-    svg += renderLine(fBold, cleanSwipe, sx, footY, 22, '#FFF498', 1.5);
+    svg += renderLine(fBold, cleanSwipe, sx, footY, isSquare ? 19 : 22, '#FFF498', 1.5);
     const ax = width - 72 - 14;
-    const ay = footY - 8;
+    const ay = footY - (isSquare ? 6 : 8);
     svg += `<path d="M${ax - 8} ${ay} L${ax + 6} ${ay} M${ax} ${ay - 6} L${ax + 6} ${ay} L${ax} ${ay + 6}" fill="none" stroke="#FFF498" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
   }
 
   // Progress bar at very bottom
   if (slideNum && totalSlides) {
     const progW = Math.round((width * slideNum) / totalSlides);
-    svg += `<rect x="0" y="${height - 10}" width="${width}" height="10" fill="#1F1F24"/>`;
-    svg += `<rect x="0" y="${height - 10}" width="${progW}" height="10" fill="#0F33FF"/>`;
+    const progH = isSquare ? 5 : 6;
+    svg += `<rect x="0" y="${height - progH}" width="${width}" height="${progH}" fill="#1F1F24"/>`;
+    svg += `<rect x="0" y="${height - progH}" width="${progW}" height="${progH}" fill="#0F33FF"/>`;
   }
 
   svg += `</svg>`;
@@ -313,7 +351,7 @@ async function buildSlide({
   await sharp(bgBuffer)
     .composite([
       { input: Buffer.from(svg), top: 0, left: 0 },
-      { input: logoPng, top: 62, left: 72 },
+      { input: logoPng, top: logoTop, left: 72 },
     ])
     .png({ compressionLevel: 8 })
     .toFile(outPath);
@@ -822,6 +860,202 @@ const STORY_CAROUSELS = [
   },
 ];
 
+// ==========================================
+// 5. CARRUSELES CUADRADOS (1:1 - 1080x1080)
+// ==========================================
+const SQUARE_CAROUSELS = [
+  {
+    folder: '09-carrusel-cuadrado-auditoria-ia',
+    title: 'Carrusel Cuadrado 01 — Auditoría en 4 Niveles: ¿Tu PyME está lista para la IA?',
+    keyword: 'AUDITORIA',
+    leadMagnet: 'Auditoría 1 a 1 de Procesos e IA 100% Bonificada + Test en PDF',
+    slides: [
+      {
+        bgImage: 'svc-ia.jpg',
+        eyebrow: 'Test Operativo',
+        headlineLines: ['¿Tu PyME está', 'lista para [la IA]', 'o es puro humo?'],
+        headlineSize: 64,
+        subtext: 'La Inteligencia Artificial no hace milagros sobre el desorden. Pasá este test de 4 niveles antes de invertir un solo peso.',
+        swipeText: 'TEST NIVEL 1 →',
+      },
+      {
+        bgImage: 'svc-gestion.jpg',
+        eyebrow: 'Niveles 1 y 2',
+        headlineLines: ['Nivel 1: Datos', 'Nivel 2: [Procesos]', 'repetitivos'],
+        headlineSize: 60,
+        bullets: [
+          { iconType: 'cross', title: 'NIVEL 1 · Datos desparramados', subtitle: 'Si tu base está en cuadernos o chats, primero necesitás CRM.' },
+          { iconType: 'cross', title: 'NIVEL 2 · Tareas manuales diarias', subtitle: 'Si tu equipo copia planillas, la automatización te ahorra 20 h/sem.' },
+        ],
+        swipeText: 'NIVELES 3 Y 4 →',
+      },
+      {
+        bgImage: 'svc-integraciones.jpg',
+        eyebrow: 'Niveles 3 y 4',
+        headlineLines: ['Nivel 3: Atención', 'Nivel 4: [Agentes]', 'autónomos'],
+        headlineSize: 60,
+        bullets: [
+          { iconType: 'check', title: 'NIVEL 3 · Chatbots IA entrenados', subtitle: 'Atención 24/7 con tu catálogo real sin inventar respuestas.' },
+          { iconType: 'check', title: 'NIVEL 4 · Agentes con permisos', subtitle: 'Facturan en ARCA, concilian pagos y mueven stock automáticamente.' },
+        ],
+        swipeText: 'EL VEREDICTO →',
+      },
+      {
+        bgImage: 'svc-automatizacion.jpg',
+        eyebrow: 'El Secreto',
+        headlineLines: ['No compres IA.', 'Comprá [tiempo]', 'y orden en ventas.'],
+        headlineSize: 60,
+        subtext: 'El 80% de los softwares quedan abandonados porque no se integran a cómo trabajás hoy. La solución es conectar tus herramientas actuales.',
+        bullets: [
+          { iconType: 'light', title: 'En Soluweb armamos tu arquitectura a medida', subtitle: 'Desde la captura del lead en WhatsApp hasta la cobranza bancaria.' },
+        ],
+        swipeText: 'AUDITORÍA GRATIS →',
+      },
+      {
+        bgImage: 'og-bg.jpg',
+        eyebrow: 'Auditoría Bonificada',
+        headlineLines: ['Pedí tu [Auditoría]', 'de Procesos e IA', '{100% Bonificada}'],
+        headlineSize: 62,
+        subtext: 'Analizamos tu empresa en 30 minutos y te decimos con exactitud qué conviene automatizar primero y cuánto vas a ahorrar.',
+        ctaBox: {
+          kicker: 'Lead Magnet Gratuito · Cupos Limitados',
+          title: 'Comentá {“AUDITORIA”}',
+          subtitle: 'Te enviamos el test completo en PDF por privado.',
+          button: 'O ESCRIBINOS POR PRIVADO "AUDITORIA"',
+        },
+        swipeText: 'GUARDÁ ESTE POST ★',
+      },
+    ],
+  },
+  {
+    folder: '10-carrusel-cuadrado-costo-no-automatizar',
+    title: 'Carrusel Cuadrado 02 — El Costo Oculto de NO Automatizar tu Negocio',
+    keyword: 'CALCULO',
+    leadMagnet: 'Calculadora de Ahorro Operativo y Fugas Comerciales',
+    slides: [
+      {
+        bgImage: 'svc-crm.jpg',
+        eyebrow: 'Finanzas & Eficiencia',
+        headlineLines: ['El costo invisible', 'de no automatizar', 'tu [empresa hoy]'],
+        headlineSize: 64,
+        subtext: 'Creés que no gastar en software te cuida el bolsillo, pero las tareas manuales te están costando millones por mes.',
+        swipeText: 'LAS 3 FUGAS →',
+      },
+      {
+        bgImage: 'svc-gestion.jpg',
+        eyebrow: 'Fugas Invisibles',
+        headlineLines: ['¿Dónde se te', 'está yendo la', '[plata cada mes]?'],
+        headlineSize: 60,
+        bullets: [
+          { iconType: 'cross', title: 'Leads que responden tras 4 horas', subtitle: 'El 78% de las personas le compra al primero que le responde.' },
+          { iconType: 'cross', title: 'Horas copiando facturas y stock a mano', subtitle: 'Pagar horas de sueldo calificadas para hacer tareas de robot.' },
+          { iconType: 'cross', title: 'Cobranzas y presupuestos olvidados', subtitle: 'Ventas perdidas por falta de seguimiento comercial programado.' },
+        ],
+        swipeText: 'EL CÁLCULO REAL →',
+      },
+      {
+        bgImage: 'svc-automatizacion.jpg',
+        eyebrow: 'Matemática Pura',
+        headlineLines: ['3 horas por día', 'por empleado =', '{$450.000 / mes}'],
+        headlineSize: 60,
+        subtext: 'En un equipo de 3 personas, son más de 60 horas al mes tiradas en tareas mecánicas que un software resuelve en 5 segundos.',
+        bullets: [
+          { iconType: 'check', title: 'La automatización opera 24/7 sin feriados', subtitle: 'Cuesta una fracción de un sueldo y nunca se saltea un cliente.' },
+        ],
+        swipeText: 'LA SOLUCIÓN →',
+      },
+      {
+        bgImage: 'svc-integraciones.jpg',
+        eyebrow: 'Ecosistema Conectado',
+        headlineLines: ['Automatizá el 80%', 'de lo repetitivo,', 'enfocate en [vender]'],
+        headlineSize: 60,
+        bullets: [
+          { iconType: 'check', title: 'Respuestas inteligentes en menos de 10 segundos', subtitle: 'WhatsApp, Instagram y Web unificados en un solo CRM.' },
+          { iconType: 'check', title: 'Facturación y cobranzas sincronizadas', subtitle: 'Cobros de Mercado Pago y bancos emitidos en ARCA sin demoras.' },
+        ],
+        swipeText: 'CALCULADORA GRATIS →',
+      },
+      {
+        bgImage: 'og-bg.jpg',
+        eyebrow: 'Herramienta Gratuita',
+        headlineLines: ['Descargá la', '[Calculadora] de', 'Ahorro Operativo'],
+        headlineSize: 62,
+        subtext: 'Cargá la cantidad de empleados y tareas de tu negocio: calculá cuántas horas y pesos recuperás este trimestre.',
+        ctaBox: {
+          kicker: 'Plantilla en Hoja de Cálculo Lista para Usar',
+          title: 'Comentá {“CALCULO”}',
+          subtitle: 'Te enviamos el link de descarga directo a tu DM.',
+          button: 'O ENVIANOS UN DM CON "CALCULO"',
+        },
+        swipeText: 'GUARDÁ Y COMPARTÍ ★',
+      },
+    ],
+  },
+  {
+    folder: '11-carrusel-cuadrado-3-agentes-ia',
+    title: 'Carrusel Cuadrado 03 — 3 Agentes de IA listos para activar en tu empresa en 14 días',
+    keyword: 'AGENTES',
+    leadMagnet: 'Blueprint Técnico y Plano de Arquitectura de Agentes IA',
+    slides: [
+      {
+        bgImage: 'hero.jpg',
+        eyebrow: 'IA Aplicada a Negocios',
+        headlineLines: ['3 Agentes de IA', 'que podés activar', 'en [solo 14 días]'],
+        headlineSize: 64,
+        subtext: 'No necesitás ser Silicon Valley ni gastar fortunas. Estos 3 asistentes resuelven los dolores más costosos de cualquier PyME.',
+        swipeText: 'CONOCÉ EL #1 →',
+      },
+      {
+        bgImage: 'svc-ia.jpg',
+        eyebrow: 'Agente 01 · Ventas',
+        headlineLines: ['El Calificador', 'Comercial 24/7', 'en [WhatsApp]'],
+        headlineSize: 60,
+        subtext: 'Atiende consultas al instante, responde dudas de catálogo, cotiza y filtra curiosos.',
+        bullets: [
+          { iconType: 'check', title: 'Agenda videollamadas directo en tu Google Calendar', subtitle: 'O envía link de pago de Mercado Pago si hay stock inmediato.' },
+        ],
+        swipeText: 'CONOCÉ EL #2 →',
+      },
+      {
+        bgImage: 'svc-gestion.jpg',
+        eyebrow: 'Agente 02 · Finanzas',
+        headlineLines: ['El Asistente de', '[Cobranzas] y', 'Facturación ARCA'],
+        headlineSize: 60,
+        subtext: 'Detecta transferencias, emite comprobantes electrónicos al instante y recuerda cobros vencidos cordialmente.',
+        bullets: [
+          { iconType: 'check', title: 'Reduce la morosidad comercial hasta un 42%', subtitle: 'Sin fricciones ni llamadas incómodas de tu equipo de ventas.' },
+        ],
+        swipeText: 'CONOCÉ EL #3 →',
+      },
+      {
+        bgImage: 'svc-integraciones.jpg',
+        eyebrow: 'Agente 03 · Operaciones',
+        headlineLines: ['El Gestor de', 'Stock, Tracking y', '[Post-Venta]'],
+        headlineSize: 60,
+        bullets: [
+          { iconType: 'check', title: 'Tracking y estado de pedidos por WhatsApp', subtitle: 'El comprador consulta su número de orden y recibe datos en 3 seg.' },
+          { iconType: 'check', title: 'Alertas automáticas de reposición de inventario', subtitle: 'Te avisa al celular antes de que te quedes sin stock clave.' },
+        ],
+        swipeText: 'PLAN DE ACCIÓN →',
+      },
+      {
+        bgImage: 'og-bg.jpg',
+        eyebrow: 'Blueprint Técnico',
+        headlineLines: ['Descargá el [Plano]', 'de Agentes de IA', 'para Empresas'],
+        headlineSize: 62,
+        subtext: 'El paso a paso exacto para conectar OpenAI, WhatsApp Business, n8n y tu base de datos en menos de 2 semanas.',
+        ctaBox: {
+          kicker: 'Lead Magnet Técnico · Paso a Paso',
+          title: 'Comentá {“AGENTES”}',
+          subtitle: 'Te lo enviamos de inmediato a tus mensajes privados.',
+          button: 'O MANDANOS "AGENTES" POR DM',
+        },
+        swipeText: 'GUARDÁ ESTE POST ★',
+      },
+    ],
+  },
+];
+
 // Ejecución
 mkdirSync(smDir, { recursive: true });
 
@@ -887,6 +1121,26 @@ for (const sc of STORY_CAROUSELS) {
     });
   }
   console.log(`✓ ${sc.folder} (${total} stories 9:16 generadas)`);
+}
+
+// Carruseles Cuadrados para Feed (1:1 - 1080x1080)
+for (const sq of SQUARE_CAROUSELS) {
+  const dir = join(smDir, sq.folder);
+  mkdirSync(dir, { recursive: true });
+  const total = sq.slides.length;
+  for (let i = 0; i < total; i++) {
+    const s = sq.slides[i];
+    const outPath = join(dir, `slide-0${i + 1}.png`);
+    await buildSlide({
+      outPath,
+      width: 1080,
+      height: 1080,
+      slideNum: i + 1,
+      totalSlides: total,
+      ...s,
+    });
+  }
+  console.log(`✓ ${sq.folder} (${total} slides cuadrados 1:1 generados)`);
 }
 
 console.log('Todas las piezas de Social Media fueron generadas con éxito.');
