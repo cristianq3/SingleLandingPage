@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banners Publicitarios para Portales de Noticias — Soluweb</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #09090b;
+      color: #fafafa;
+      font-family: 'Montserrat', sans-serif;
+      padding: 40px 20px 80px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .badge {
+      display: inline-block;
+      background: #0F33FF;
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      padding: 6px 16px;
+      border-radius: 4px;
+      transform: skew(-12deg);
+      margin-bottom: 16px;
+    }
+    .badge span { display: inline-block; transform: skew(12deg); }
+    h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    h1 span { color: #0F33FF; }
+    p.lead {
+      color: #a1a1aa;
+      font-size: 16px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .info-box {
+      background: rgba(15, 51, 255, 0.1);
+      border: 1px solid rgba(15, 51, 255, 0.3);
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin: 32px auto;
+      max-width: 850px;
+      font-size: 14px;
+      color: #e0e7ff;
+    }
+    .info-box strong { color: #FFF498; }
+    .banner-card {
+      background: #141418;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .banner-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .banner-title {
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .banner-dim {
+      background: #27272a;
+      color: #FFF498;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+    .banner-desc {
+      color: #a1a1aa;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .preview-stage {
+      background: #000;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+      margin-bottom: 20px;
+      border: 1px dashed rgba(255,255,255,0.15);
+    }
+    .preview-stage a {
+      display: inline-block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+    }
+    .preview-stage a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(15, 51, 255, 0.35);
+    }
+    .preview-stage img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+    .code-box {
+      background: #09090b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 16px;
+      position: relative;
+    }
+    .code-box header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1f1f23;
+      font-size: 12px;
+      color: #71717a;
+      text-align: left;
+    }
+    pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12.5px;
+      color: #38bdf8;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: #0F33FF;
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s ease;
+    }
+    .copy-btn:hover { background: #0022cc; }
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: #71717a;
+      font-size: 14px;
+    }
+    footer a { color: #0F33FF; text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge"><span>SOLUWEB · KIT PUBLICITARIO</span></div>
+      <h1>Banners Oficiales para <span>Portales de Noticias</span></h1>
+      <p class="lead">Piezas gráficas de alto rendimiento en formatos IAB estándar con enlace directo y parámetros de analítica hacia <strong>soluweb.com.ar</strong>.</p>
+      
+      <div class="info-box">
+        <strong>URL de Destino con Tracking:</strong><br>
+        <code>https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes</code><br><br>
+        Cada banner está alojado de manera pública y puede insertarse en cualquier gestor de anuncios (Google Ad Manager, WordPress, AdSense o HTML directo). Al hacer clic, abre en pestaña nueva.
+      </div>
+    </header>
+
+    <!-- 0. FORMATO EXACTO SOLICITADO: 327 x 256 px -->
+    <section class="banner-card" style="border: 2px solid #0F33FF; box-shadow: 0 0 35px rgba(15, 51, 255, 0.25);">
+      <div class="banner-head">
+        <h2 class="banner-title" style="color: #FFF498;">★ Formato Exacto Solicitado: 327 × 256 px (Portal de Noticias)</h2>
+        <span class="banner-dim" style="background: #0F33FF; color: #fff;">327 × 256 px (y @2x Retina)</span>
+      </div>
+      <p class="banner-desc">Medida exacta para el espacio publicitario en la web de noticias. Se incluye versión estándar (327x256 px) y versión Retina HD (654x512 px) para máxima nitidez en pantallas de alta densidad.</p>
+      
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px;">
+        <!-- Variante 1 -->
+        <div style="text-align: center;">
+          <p style="font-size: 13px; font-weight: 700; color: #FFF498; margin-bottom: 8px;">Variante 1: WhatsApp & Ventas</p>
+          <div class="preview-stage" style="padding: 16px; margin-bottom: 8px;">
+            <a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" title="Probar clic a soluweb.com.ar">
+              <img src="banner-noticias-327x256.png" alt="Soluweb - Agentes de IA en WhatsApp" width="327" height="256">
+            </a>
+          </div>
+        </div>
+
+        <!-- Variante 2 -->
+        <div style="text-align: center;">
+          <p style="font-size: 13px; font-weight: 700; color: #B3BFFF; margin-bottom: 8px;">Variante 2: Eficiencia & Procesos</p>
+          <div class="preview-stage" style="padding: 16px; margin-bottom: 8px;">
+            <a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" title="Probar clic a soluweb.com.ar">
+              <img src="banner-noticias-327x256-v2.png" alt="Soluweb - Automatización de Procesos" width="327" height="256">
+            </a>
+          </div>
+        </div>
+
+        <!-- Variante 3 -->
+        <div style="text-align: center;">
+          <p style="font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 8px;">Variante 3: Demo en Vivo</p>
+          <div class="preview-stage" style="padding: 16px; margin-bottom: 8px;">
+            <a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" title="Probar clic a soluweb.com.ar">
+              <img src="banner-noticias-327x256-v3.png" alt="Soluweb - Sumá IA a tu Negocio" width="327" height="256">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-box">
+        <header>
+          <span>CÓDIGO HTML PARA PEGAR EN LA PÁGINA DE NOTICIAS (327x256)</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.innerText); this.innerText='¡Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000);">Copiar Código</button>
+        </header>
+        <pre>&lt;!-- Banner Soluweb 327x256 para Portal de Noticias --&gt;
+&lt;a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" style="display:inline-block; width:327px; height:256px; text-decoration:none;"&gt;
+  &lt;img src="https://soluweb.com.ar/banners/banner-noticias-327x256.png" srcset="https://soluweb.com.ar/banners/banner-noticias-327x256@2x.png 2x" alt="Soluweb - Inteligencia Artificial y Automatización para PyMEs" width="327" height="256" style="display:block; width:327px; height:256px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.4);" /&gt;
+&lt;/a&gt;</pre>
+      </div>
+    </section>
+
+    <!-- 1. BILLBOARD -->
+    <section class="banner-card">
+      <div class="banner-head">
+        <h2 class="banner-title">1. Billboard / Super Leaderboard (Cabecera Principal)</h2>
+        <span class="banner-dim">970 × 250 px</span>
+      </div>
+      <p class="banner-desc">El formato rey en portales de noticias (Infobae, Clarín, La Nación, etc.). Se ubica en la parte superior del home o entre las noticias destacadas de la portada.</p>
+      <div class="preview-stage">
+        <a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" title="Hacer clic para ir a soluweb.com.ar">
+          <img src="billboard-970x250.png" alt="Soluweb - Inteligencia Artificial y Automatización para PyMEs" width="970" height="250">
+        </a>
+      </div>
+      <div class="code-box">
+        <header>
+          <span>CÓDIGO HTML PARA PEGAR EN LA PÁGINA DE NOTICIAS</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.innerText); this.innerText='¡Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000);">Copiar Código</button>
+        </header>
+        <pre>&lt;!-- Banner Soluweb 970x250 (Billboard) --&gt;
+&lt;a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" style="display:inline-block; max-width:100%; text-decoration:none;"&gt;
+  &lt;img src="https://soluweb.com.ar/banners/billboard-970x250.png" alt="Soluweb - Inteligencia Artificial y Automatización para PyMEs" width="970" height="250" style="width:100%; max-width:970px; height:auto; display:block; border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,0.35);" /&gt;
+&lt;/a&gt;</pre>
+      </div>
+    </section>
+
+    <!-- 2. LEADERBOARD -->
+    <section class="banner-card">
+      <div class="banner-head">
+        <h2 class="banner-title">2. Leaderboard Clásico</h2>
+        <span class="banner-dim">728 × 90 px</span>
+      </div>
+      <p class="banner-desc">Formato horizontal clásico para la cabecera del artículo o entre párrafos intermedios.</p>
+      <div class="preview-stage">
+        <a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" title="Hacer clic para ir a soluweb.com.ar">
+          <img src="leaderboard-728x90.png" alt="Soluweb - Inteligencia Artificial y Automatización" width="728" height="90">
+        </a>
+      </div>
+      <div class="code-box">
+        <header>
+          <span>CÓDIGO HTML PARA PEGAR EN LA PÁGINA DE NOTICIAS</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.innerText); this.innerText='¡Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000);">Copiar Código</button>
+        </header>
+        <pre>&lt;!-- Banner Soluweb 728x90 (Leaderboard) --&gt;
+&lt;a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" style="display:inline-block; max-width:100%; text-decoration:none;"&gt;
+  &lt;img src="https://soluweb.com.ar/banners/leaderboard-728x90.png" alt="Soluweb - Inteligencia Artificial y Automatización" width="728" height="90" style="width:100%; max-width:728px; height:auto; display:block; border-radius:6px;" /&gt;
+&lt;/a&gt;</pre>
+      </div>
+    </section>
+
+    <!-- 3. MEDIUM RECTANGLE -->
+    <section class="banner-card">
+      <div class="banner-head">
+        <h2 class="banner-title">3. Medium Rectangle (Robapáginas / MPU)</h2>
+        <span class="banner-dim">300 × 250 px</span>
+      </div>
+      <p class="banner-desc">El formato más cliqueado en noticias. Se ubica en la barra lateral (sidebar) o dentro de la lectura de la noticia (párrafo 3 o 4).</p>
+      <div class="preview-stage">
+        <a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" title="Hacer clic para ir a soluweb.com.ar">
+          <img src="rectangle-300x250.png" alt="Soluweb - Chatbots IA y CRM" width="300" height="250">
+        </a>
+      </div>
+      <div class="code-box">
+        <header>
+          <span>CÓDIGO HTML PARA PEGAR EN LA PÁGINA DE NOTICIAS</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.innerText); this.innerText='¡Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000);">Copiar Código</button>
+        </header>
+        <pre>&lt;!-- Banner Soluweb 300x250 (Medium Rectangle) --&gt;
+&lt;a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" style="display:inline-block; text-decoration:none;"&gt;
+  &lt;img src="https://soluweb.com.ar/banners/rectangle-300x250.png" alt="Soluweb - Chatbots IA y CRM" width="300" height="250" style="display:block; border-radius:8px;" /&gt;
+&lt;/a&gt;</pre>
+      </div>
+    </section>
+
+    <!-- 4. HALF PAGE -->
+    <section class="banner-card">
+      <div class="banner-head">
+        <h2 class="banner-title">4. Half Page Banner (Rascacielos / Sticky Sidebar)</h2>
+        <span class="banner-dim">300 × 600 px</span>
+      </div>
+      <p class="banner-desc">Formato vertical de alta visibilidad para la barra lateral derecha que acompaña al lector mientras navega la noticia.</p>
+      <div class="preview-stage">
+        <a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" title="Hacer clic para ir a soluweb.com.ar">
+          <img src="halfpage-300x600.png" alt="Soluweb - Transformación Digital PyME" width="300" height="600">
+        </a>
+      </div>
+      <div class="code-box">
+        <header>
+          <span>CÓDIGO HTML PARA PEGAR EN LA PÁGINA DE NOTICIAS</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.innerText); this.innerText='¡Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000);">Copiar Código</button>
+        </header>
+        <pre>&lt;!-- Banner Soluweb 300x600 (Half Page) --&gt;
+&lt;a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" style="display:inline-block; text-decoration:none;"&gt;
+  &lt;img src="https://soluweb.com.ar/banners/halfpage-300x600.png" alt="Soluweb - Transformación Digital PyME" width="300" height="600" style="display:block; border-radius:10px;" /&gt;
+&lt;/a&gt;</pre>
+      </div>
+    </section>
+
+    <!-- 5. MOBILE LEADERBOARD -->
+    <section class="banner-card">
+      <div class="banner-head">
+        <h2 class="banner-title">5. Mobile Leaderboard (Para Lectores en Celular)</h2>
+        <span class="banner-dim">320 × 100 px</span>
+      </div>
+      <p class="banner-desc">Optimizado para pantallas móviles; ideal como anuncio fijo al pie de pantalla o entre párrafos de la nota en smartphones.</p>
+      <div class="preview-stage">
+        <a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" title="Hacer clic para ir a soluweb.com.ar">
+          <img src="mobile-320x100.png" alt="Soluweb - Sumá IA a tu PyME" width="320" height="100">
+        </a>
+      </div>
+      <div class="code-box">
+        <header>
+          <span>CÓDIGO HTML PARA PEGAR EN LA PÁGINA DE NOTICIAS</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.innerText); this.innerText='¡Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000);">Copiar Código</button>
+        </header>
+        <pre>&lt;!-- Banner Soluweb 320x100 (Mobile) --&gt;
+&lt;a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" style="display:inline-block; text-decoration:none;"&gt;
+  &lt;img src="https://soluweb.com.ar/banners/mobile-320x100.png" alt="Soluweb - Sumá IA a tu PyME" width="320" height="100" style="display:block; border-radius:6px;" /&gt;
+&lt;/a&gt;</pre>
+      </div>
+    </section>
+
+    <!-- 6. DISPLAY HORIZONTAL -->
+    <section class="banner-card">
+      <div class="banner-head">
+        <h2 class="banner-title">6. In-Feed & Display Native (1200 × 628 px)</h2>
+        <span class="banner-dim">1200 × 628 px</span>
+      </div>
+      <p class="banner-desc">Formato panorámico HD de máximo detalle para redes de display, Google Ad Manager nativo o artículos patrocinados.</p>
+      <div class="preview-stage">
+        <a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" title="Hacer clic para ir a soluweb.com.ar">
+          <img src="display-1200x628.png" alt="Soluweb - Consultora de IA y CRM" width="1200" height="628">
+        </a>
+      </div>
+      <div class="code-box">
+        <header>
+          <span>CÓDIGO HTML PARA PEGAR EN LA PÁGINA DE NOTICIAS</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.innerText); this.innerText='¡Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000);">Copiar Código</button>
+        </header>
+        <pre>&lt;!-- Banner Soluweb 1200x628 (Display HD) --&gt;
+&lt;a href="https://soluweb.com.ar/?utm_source=portal_noticias&utm_medium=banner&utm_campaign=noticias_pymes" target="_blank" rel="noopener" style="display:inline-block; max-width:100%; text-decoration:none;"&gt;
+  &lt;img src="https://soluweb.com.ar/banners/display-1200x628.png" alt="Soluweb - Consultora de IA y CRM" width="1200" height="628" style="width:100%; max-width:1200px; height:auto; display:block; border-radius:12px;" /&gt;
+&lt;/a&gt;</pre>
+      </div>
+    </section>
+
+    <footer>
+      <p>Generado con el Sistema de Identidad Visual de <a href="https://soluweb.com.ar" target="_blank">Soluweb.com.ar</a></p>
+    </footer>
+  </div>
+</body>
+</html>

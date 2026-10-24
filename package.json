@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",`n    "social": "node scripts/build-social-media.mjs",
+    "preview": "astro preview",
+    "social": "node scripts/build-social-media.mjs",
+    "banners": "node scripts/build-news-banners.mjs",
     "brand": "node scripts/build-brand.mjs && node scripts/build-og.mjs"
   },
   "dependencies": {
