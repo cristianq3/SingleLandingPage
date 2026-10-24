@@ -338,6 +338,203 @@ async function buildBanner327x256() {
 }
 
 // -------------------------------------------------------------
+// 0B. FORMATOS MINIMALISTAS (327 x 256 px) — Más Marketing, Menos Texto
+// -------------------------------------------------------------
+async function buildMinimalBanners327x256() {
+  const w = 654;
+  const h = 512;
+  const logoPng = await sharp(Buffer.from(logoSvg), { density: 300 }).resize({ width: 220 }).png().toBuffer();
+
+  // === MINIMAL 1: "El futuro de tu empresa con IA" (Visual 3D Hero brillante) ===
+  const bg1 = await sharp(join(root, 'src', 'assets', 'img', 'hero.jpg'))
+    .resize(w, h, { fit: 'cover', position: 'center' })
+    .modulate({ brightness: 0.62, saturation: 1.3 })
+    .toBuffer();
+
+  let svg1 = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
+    <defs>
+      <linearGradient id="gMin1" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#0C0C0C" stop-opacity="0.96"/>
+        <stop offset="38%" stop-color="#0C0C0C" stop-opacity="0.88"/>
+        <stop offset="68%" stop-color="#0C0C0C" stop-opacity="0.32"/>
+        <stop offset="100%" stop-color="#0C0C0C" stop-opacity="0.05"/>
+      </linearGradient>
+      <radialGradient id="glowMin1" cx="20%" cy="40%" r="55%">
+        <stop offset="0%" stop-color="#0F33FF" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#0F33FF" stop-opacity="0"/>
+      </radialGradient>
+      <pattern id="gridMin1" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.035"/>
+      </pattern>
+    </defs>
+    <rect width="${w}" height="${h}" fill="url(#gMin1)"/>
+    <rect width="${w}" height="${h}" fill="url(#glowMin1)"/>
+    <rect width="${w}" height="${h}" fill="url(#gridMin1)"/>
+    <rect x="2" y="2" width="${w - 4}" height="${h - 4}" rx="20" fill="none" stroke="#0F33FF" stroke-opacity="0.5" stroke-width="2.5"/>
+  `;
+
+  svg1 += renderRichLine(fBlack, 'El futuro de tu', 40, 184, 40, '#FFFFFF', -1);
+  svg1 += renderRichLine(fBlack, 'empresa con [IA]', 40, 234, 40, '#FFFFFF', -1);
+
+  svg1 += renderLine(fReg, 'Automatizá WhatsApp, ventas y gestión.', 40, 282, 20, '#D4D4D8', 0);
+
+  const btnX1 = 40;
+  const btnY1 = 336;
+  const btnW1 = 300;
+  const btnH1 = 76;
+  svg1 += `<rect x="${btnX1}" y="${btnY1}" width="${btnW1}" height="${btnH1}" rx="38" fill="#0F33FF"/>`;
+  svg1 += `<polygon points="${btnX1 + btnW1 - 65},${btnY1} ${btnX1 + btnW1},${btnY1} ${btnX1 + btnW1 - 25},${btnY1 + btnH1} ${btnX1 + btnW1 - 90},${btnY1 + btnH1}" fill="#FFFFFF" fill-opacity="0.15"/>`;
+  svg1 += renderLine(fBlack, 'CONOCER MÁS', btnX1 + 36, btnY1 + 47, 20.5, '#FFFFFF', 0.5);
+  svg1 += renderLine(fBold, '→', btnX1 + btnW1 - 50, btnY1 + 49, 26, '#FFF498', 0);
+
+  // Footer URL
+  svg1 += renderLine(fBold, 'soluweb.com.ar', 40, 464, 21, '#A1A1AA', 0.8);
+
+  svg1 += `</svg>`;
+
+  const buf2x_min1 = await sharp(bg1)
+    .composite([
+      { input: Buffer.from(svg1), top: 0, left: 0 },
+      { input: logoPng, top: 40, left: 40 },
+    ])
+    .png({ compressionLevel: 8 })
+    .toBuffer();
+
+  const buf1x_min1 = await sharp(buf2x_min1)
+    .resize(327, 256)
+    .png({ compressionLevel: 8 })
+    .toBuffer();
+
+  writeFileSync(join(outPublic, 'banner-noticias-327x256-minimal.png'), buf1x_min1);
+  writeFileSync(join(outLocal, 'banner-noticias-327x256-minimal.png'), buf1x_min1);
+  writeFileSync(join(outPublic, 'banner-noticias-327x256-minimal@2x.png'), buf2x_min1);
+  writeFileSync(join(outLocal, 'banner-noticias-327x256-minimal@2x.png'), buf2x_min1);
+  console.log('✓ banner-noticias-327x256-minimal.png (y @2x Retina)');
+
+  // === MINIMAL 2: "Automatizá tu negocio. Multiplicá tus ventas" (Human Tech Workspace) ===
+  const bg2 = await sharp(join(root, 'src', 'assets', 'img', 'about.jpg'))
+    .resize(w, h, { fit: 'cover', position: 'center' })
+    .modulate({ brightness: 0.58, saturation: 1.3 })
+    .toBuffer();
+
+  let svg2 = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
+    <defs>
+      <linearGradient id="gMin2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0C0C0C" stop-opacity="0.96"/>
+        <stop offset="42%" stop-color="#0C0C0C" stop-opacity="0.86"/>
+        <stop offset="78%" stop-color="#0C0C0C" stop-opacity="0.30"/>
+        <stop offset="100%" stop-color="#0C0C0C" stop-opacity="0.10"/>
+      </linearGradient>
+      <radialGradient id="glowMin2" cx="15%" cy="30%" r="55%">
+        <stop offset="0%" stop-color="#0F33FF" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#0F33FF" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="${w}" height="${h}" fill="url(#gMin2)"/>
+    <rect width="${w}" height="${h}" fill="url(#glowMin2)"/>
+    <rect x="2" y="2" width="${w - 4}" height="${h - 4}" rx="20" fill="none" stroke="#0F33FF" stroke-opacity="0.5" stroke-width="2.5"/>
+  `;
+
+  svg2 += renderRichLine(fBlack, 'Automatizá tu negocio.', 40, 184, 37, '#FFFFFF', -1);
+  svg2 += renderRichLine(fBlack, 'Multiplicá tus [ventas].', 40, 234, 37, '#FFFFFF', -1);
+
+  svg2 += renderLine(fReg, 'Sistemas a medida, CRM e Inteligencia Artificial.', 40, 282, 20, '#D4D4D8', 0);
+
+  const btnX2 = 40;
+  const btnY2 = 336;
+  const btnW2 = 280;
+  const btnH2 = 76;
+  svg2 += `<rect x="${btnX2}" y="${btnY2}" width="${btnW2}" height="${btnH2}" rx="38" fill="#0F33FF"/>`;
+  svg2 += `<polygon points="${btnX2 + btnW2 - 65},${btnY2} ${btnX2 + btnW2},${btnY2} ${btnX2 + btnW2 - 25},${btnY2 + btnH2} ${btnX2 + btnW2 - 90},${btnY2 + btnH2}" fill="#FFFFFF" fill-opacity="0.15"/>`;
+  svg2 += renderLine(fBlack, 'DESCUBRIR', btnX2 + 36, btnY2 + 47, 21, '#FFFFFF', 0.5);
+  svg2 += renderLine(fBold, '→', btnX2 + btnW2 - 50, btnY2 + 49, 26, '#FFF498', 0);
+
+  svg2 += renderLine(fBold, 'soluweb.com.ar', 40, 464, 21, '#A1A1AA', 0.8);
+
+  svg2 += `</svg>`;
+
+  const buf2x_min2 = await sharp(bg2)
+    .composite([
+      { input: Buffer.from(svg2), top: 0, left: 0 },
+      { input: logoPng, top: 40, left: 40 },
+    ])
+    .png({ compressionLevel: 8 })
+    .toBuffer();
+
+  const buf1x_min2 = await sharp(buf2x_min2)
+    .resize(327, 256)
+    .png({ compressionLevel: 8 })
+    .toBuffer();
+
+  writeFileSync(join(outPublic, 'banner-noticias-327x256-minimal-v2.png'), buf1x_min2);
+  writeFileSync(join(outLocal, 'banner-noticias-327x256-minimal-v2.png'), buf1x_min2);
+  writeFileSync(join(outPublic, 'banner-noticias-327x256-minimal-v2@2x.png'), buf2x_min2);
+  writeFileSync(join(outLocal, 'banner-noticias-327x256-minimal-v2@2x.png'), buf2x_min2);
+  console.log('✓ banner-noticias-327x256-minimal-v2.png (y @2x Retina)');
+
+  // === MINIMAL 3: "¿Y si tu empresa vendiera sola?" (3D Neural Nodes) ===
+  const bg3 = await sharp(join(root, 'src', 'assets', 'img', 'svc-ia.jpg'))
+    .resize(w, h, { fit: 'cover', position: 'right' })
+    .modulate({ brightness: 0.60, saturation: 1.3 })
+    .toBuffer();
+
+  let svg3 = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
+    <defs>
+      <linearGradient id="gMin3" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#0C0C0C" stop-opacity="0.96"/>
+        <stop offset="42%" stop-color="#0C0C0C" stop-opacity="0.86"/>
+        <stop offset="75%" stop-color="#0C0C0C" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#0C0C0C" stop-opacity="0.05"/>
+      </linearGradient>
+      <radialGradient id="glowMin3" cx="20%" cy="40%" r="55%">
+        <stop offset="0%" stop-color="#0F33FF" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#0F33FF" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="${w}" height="${h}" fill="url(#gMin3)"/>
+    <rect width="${w}" height="${h}" fill="url(#glowMin3)"/>
+    <rect x="2" y="2" width="${w - 4}" height="${h - 4}" rx="20" fill="none" stroke="#0F33FF" stroke-opacity="0.5" stroke-width="2.5"/>
+  `;
+
+  svg3 += renderRichLine(fBlack, '¿Y si tu empresa', 40, 184, 42, '#FFFFFF', -1);
+  svg3 += renderRichLine(fBlack, 'vendiera [sola]?', 40, 236, 42, '#FFFFFF', -1);
+
+  svg3 += renderLine(fReg, 'Agentes de IA 24/7 en WhatsApp y CRM comercial.', 40, 284, 20, '#D4D4D8', 0);
+
+  const btnX3 = 40;
+  const btnY3 = 336;
+  const btnW3 = 260;
+  const btnH3 = 76;
+  svg3 += `<rect x="${btnX3}" y="${btnY3}" width="${btnW3}" height="${btnH3}" rx="38" fill="#0F33FF"/>`;
+  svg3 += `<polygon points="${btnX3 + btnW3 - 55},${btnY3} ${btnX3 + btnW3},${btnY3} ${btnX3 + btnW3 - 20},${btnY3 + btnH3} ${btnX3 + btnW3 - 75},${btnY3 + btnH3}" fill="#FFFFFF" fill-opacity="0.15"/>`;
+  svg3 += renderLine(fBlack, 'VER CÓMO', btnX3 + 34, btnY3 + 47, 21, '#FFFFFF', 0.5);
+  svg3 += renderLine(fBold, '→', btnX3 + btnW3 - 48, btnY3 + 49, 26, '#FFF498', 0);
+
+  svg3 += renderLine(fBold, 'soluweb.com.ar', 40, 464, 21, '#A1A1AA', 0.8);
+
+  svg3 += `</svg>`;
+
+  const buf2x_min3 = await sharp(bg3)
+    .composite([
+      { input: Buffer.from(svg3), top: 0, left: 0 },
+      { input: logoPng, top: 40, left: 40 },
+    ])
+    .png({ compressionLevel: 8 })
+    .toBuffer();
+
+  const buf1x_min3 = await sharp(buf2x_min3)
+    .resize(327, 256)
+    .png({ compressionLevel: 8 })
+    .toBuffer();
+
+  writeFileSync(join(outPublic, 'banner-noticias-327x256-minimal-v3.png'), buf1x_min3);
+  writeFileSync(join(outLocal, 'banner-noticias-327x256-minimal-v3.png'), buf1x_min3);
+  writeFileSync(join(outPublic, 'banner-noticias-327x256-minimal-v3@2x.png'), buf2x_min3);
+  writeFileSync(join(outLocal, 'banner-noticias-327x256-minimal-v3@2x.png'), buf2x_min3);
+  console.log('✓ banner-noticias-327x256-minimal-v3.png (y @2x Retina)');
+}
+
+// -------------------------------------------------------------
 // 1. BILLBOARD / SUPER LEADERBOARD (970 x 250 px)
 // -------------------------------------------------------------
 async function buildBillboard() {
@@ -949,41 +1146,41 @@ function buildShowcaseHtml() {
       </div>
     </header>
 
-    <!-- 0. FORMATO EXACTO SOLICITADO: 327 x 256 px -->
-    <section class="banner-card" style="border: 2px solid #0F33FF; box-shadow: 0 0 35px rgba(15, 51, 255, 0.25);">
+    <!-- 0. FORMATO EXACTO SOLICITADO: 327 x 256 px (MINIMALISTAS & DE ALTO IMPACTO) -->
+    <section class="banner-card" style="border: 2px solid #0F33FF; box-shadow: 0 0 45px rgba(15, 51, 255, 0.35);">
       <div class="banner-head">
-        <h2 class="banner-title" style="color: #FFF498;">★ Formato Exacto Solicitado: 327 × 256 px (Portal de Noticias)</h2>
+        <h2 class="banner-title" style="color: #FFF498;">★ Formato Solicitado: 327 × 256 px — Minimalistas & Imagen Marketing</h2>
         <span class="banner-dim" style="background: #0F33FF; color: #fff;">327 × 256 px (y @2x Retina)</span>
       </div>
-      <p class="banner-desc">Medida exacta para el espacio publicitario en la web de noticias. Se incluye versión estándar (327x256 px) y versión Retina HD (654x512 px) para máxima nitidez en pantallas de alta densidad.</p>
+      <p class="banner-desc">Diseños limpios con predominio de la imagen 3D de marca, poco texto, tipografía elegante y un botón directo a <strong>soluweb.com.ar</strong>.</p>
       
-      <div style="display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px;">
-        <!-- Variante 1 -->
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px;">
+        <!-- Minimal 1 -->
         <div style="text-align: center;">
-          <p style="font-size: 13px; font-weight: 700; color: #FFF498; margin-bottom: 8px;">Variante 1: WhatsApp & Ventas</p>
+          <p style="font-size: 13px; font-weight: 700; color: #FFF498; margin-bottom: 8px;">Minimal 1: "El futuro de tu empresa con IA"</p>
           <div class="preview-stage" style="padding: 16px; margin-bottom: 8px;">
             <a href="${targetUrl}" target="_blank" rel="noopener" title="Probar clic a soluweb.com.ar">
-              <img src="banner-noticias-327x256.png" alt="Soluweb - Agentes de IA en WhatsApp" width="327" height="256">
+              <img src="banner-noticias-327x256-minimal.png" alt="Soluweb - El futuro de tu empresa con IA" width="327" height="256">
             </a>
           </div>
         </div>
 
-        <!-- Variante 2 -->
+        <!-- Minimal 2 -->
         <div style="text-align: center;">
-          <p style="font-size: 13px; font-weight: 700; color: #B3BFFF; margin-bottom: 8px;">Variante 2: Eficiencia & Procesos</p>
+          <p style="font-size: 13px; font-weight: 700; color: #B3BFFF; margin-bottom: 8px;">Minimal 2: "Automatizá tu negocio"</p>
           <div class="preview-stage" style="padding: 16px; margin-bottom: 8px;">
             <a href="${targetUrl}" target="_blank" rel="noopener" title="Probar clic a soluweb.com.ar">
-              <img src="banner-noticias-327x256-v2.png" alt="Soluweb - Automatización de Procesos" width="327" height="256">
+              <img src="banner-noticias-327x256-minimal-v2.png" alt="Soluweb - Automatizá tu negocio" width="327" height="256">
             </a>
           </div>
         </div>
 
-        <!-- Variante 3 -->
+        <!-- Minimal 3 -->
         <div style="text-align: center;">
-          <p style="font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 8px;">Variante 3: Demo en Vivo</p>
+          <p style="font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 8px;">Minimal 3: "¿Y si tu empresa vendiera sola?"</p>
           <div class="preview-stage" style="padding: 16px; margin-bottom: 8px;">
             <a href="${targetUrl}" target="_blank" rel="noopener" title="Probar clic a soluweb.com.ar">
-              <img src="banner-noticias-327x256-v3.png" alt="Soluweb - Sumá IA a tu Negocio" width="327" height="256">
+              <img src="banner-noticias-327x256-minimal-v3.png" alt="Soluweb - ¿Y si tu empresa vendiera sola?" width="327" height="256">
             </a>
           </div>
         </div>
@@ -991,13 +1188,49 @@ function buildShowcaseHtml() {
 
       <div class="code-box">
         <header>
-          <span>CÓDIGO HTML PARA PEGAR EN LA PÁGINA DE NOTICIAS (327x256)</span>
+          <span>CÓDIGO HTML PARA PEGAR EN LA PÁGINA DE NOTICIAS (MINIMALISTA 327x256)</span>
           <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.innerText); this.innerText='¡Copiado!'; setTimeout(()=>this.innerText='Copiar Código', 2000);">Copiar Código</button>
         </header>
-        <pre>&lt;!-- Banner Soluweb 327x256 para Portal de Noticias --&gt;
+        <pre>&lt;!-- Banner Soluweb Minimalista 327x256 para Portal de Noticias --&gt;
 &lt;a href="${targetUrl}" target="_blank" rel="noopener" style="display:inline-block; width:327px; height:256px; text-decoration:none;"&gt;
-  &lt;img src="https://soluweb.com.ar/banners/banner-noticias-327x256.png" srcset="https://soluweb.com.ar/banners/banner-noticias-327x256@2x.png 2x" alt="Soluweb - Inteligencia Artificial y Automatización para PyMEs" width="327" height="256" style="display:block; width:327px; height:256px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.4);" /&gt;
+  &lt;img src="https://soluweb.com.ar/banners/banner-noticias-327x256-minimal.png" srcset="https://soluweb.com.ar/banners/banner-noticias-327x256-minimal@2x.png 2x" alt="Soluweb - El futuro de tu empresa con Inteligencia Artificial" width="327" height="256" style="display:block; width:327px; height:256px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.4);" /&gt;
 &lt;/a&gt;</pre>
+      </div>
+    </section>
+
+    <!-- VARIANTES INFORMATIVAS: 327 x 256 px -->
+    <section class="banner-card">
+      <div class="banner-head">
+        <h2 class="banner-title">Variantes con Gancho Operativo (327 × 256 px)</h2>
+        <span class="banner-dim">327 × 256 px</span>
+      </div>
+      <p class="banner-desc">Versiones enfocadas en resolver dolores concretos (demoras en WhatsApp, tareas manuales y demos en vivo).</p>
+      
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px;">
+        <div style="text-align: center;">
+          <p style="font-size: 13px; font-weight: 700; color: #FFF498; margin-bottom: 8px;">WhatsApp & Ventas</p>
+          <div class="preview-stage" style="padding: 16px; margin-bottom: 8px;">
+            <a href="${targetUrl}" target="_blank" rel="noopener">
+              <img src="banner-noticias-327x256.png" alt="Soluweb - Agentes de IA en WhatsApp" width="327" height="256">
+            </a>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <p style="font-size: 13px; font-weight: 700; color: #B3BFFF; margin-bottom: 8px;">Eficiencia & Procesos</p>
+          <div class="preview-stage" style="padding: 16px; margin-bottom: 8px;">
+            <a href="${targetUrl}" target="_blank" rel="noopener">
+              <img src="banner-noticias-327x256-v2.png" alt="Soluweb - Automatización de Procesos" width="327" height="256">
+            </a>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <p style="font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 8px;">Demo en Vivo</p>
+          <div class="preview-stage" style="padding: 16px; margin-bottom: 8px;">
+            <a href="${targetUrl}" target="_blank" rel="noopener">
+              <img src="banner-noticias-327x256-v3.png" alt="Soluweb - Sumá IA a tu Negocio" width="327" height="256">
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1329,6 +1562,7 @@ Todos los banners y sus códigos interactivos pueden visualizarse abriendo el ar
 async function main() {
   console.log('--- Generando Banners para Portales de Noticias ---');
   await buildBanner327x256();
+  await buildMinimalBanners327x256();
   await buildBillboard();
   await buildLeaderboard();
   await buildRectangle();
