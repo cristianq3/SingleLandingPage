@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /marca
+
+Sitemap: https://soluweb.com.ar/sitemap-index.xml
